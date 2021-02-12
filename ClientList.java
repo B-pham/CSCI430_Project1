@@ -71,12 +71,10 @@ public class ClientList implements Serializable {
   public Client findClient(String clientId) {
     System.out.println("received " + clientId);
 
-    Iterator<Client> i = clients.iterator();
-
-    while (i.hasNext()) {
+    for (int i = 0; i < clients.size(); i++) {
       System.out.println("searching...");
-      Client client = (Client) i.next();
-      System.out.println("comparing " + client.getId() + " with " + clientId);
+      Client client = (Client) clients.get(i);
+
       if (client.getId().equals(clientId)) {
         System.out.println("**** found it...");
         return client;
