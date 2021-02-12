@@ -144,8 +144,6 @@ public class Tester {
           } else {
             System.out.println("The client found is " + client.toString());
           }
-          System.out.println();
-          System.out.println();
           break;
         default:
           break;

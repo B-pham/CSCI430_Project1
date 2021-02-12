@@ -72,7 +72,7 @@ public class ClientList implements Serializable {
     System.out.println("received " + clientId);
 
     for (int i = 0; i < clients.size(); i++) {
-      System.out.println("searching...");
+      System.out.println("searching client...");
       Client client = (Client) clients.get(i);
 
       if (client.getId().equals(clientId)) {
@@ -80,6 +80,7 @@ public class ClientList implements Serializable {
         return client;
       }
     }
+    System.out.println("didn't find anything");
     return null;
   }
 }
