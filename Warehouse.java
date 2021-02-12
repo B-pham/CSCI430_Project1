@@ -1,5 +1,8 @@
-public class Warehouse {
+import java.io.Serializable;
 
+public class Warehouse implements Serializable {
+
+  private static final long serialVersionUID = 1L;
   private static ClientList clientList = ClientList.instance();
   private static Warehouse warehouse;
 

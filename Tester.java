@@ -140,11 +140,12 @@ public class Tester {
           Client client = warehouse.findClient(clientId);
 
           if (client == null) {
-            System.out.print("No client found");
+            System.out.println("No client found");
           } else {
-            System.out.print("The client found is " + client.toString());
+            System.out.println("The client found is " + client.toString());
           }
-
+          System.out.println();
+          System.out.println();
           break;
         default:
           break;
