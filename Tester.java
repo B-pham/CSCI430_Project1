@@ -89,59 +89,75 @@ public class Tester {
    * Handle client management process
    */
   private static void handleClientManagement() {
-    // show menu
-    System.out.println();
-    System.out.println("CLIENT MANAGEMENT MENU");
-    System.out.println();
-    System.out.println("SELECT:");
-    System.out.println("1 - To add a client");
-    System.out.println("2 - To find a client by id");
+    boolean keepAdding = false;
+    do { // show menu
+      System.out.println();
+      System.out.println("CLIENT MANAGEMENT MENU");
+      System.out.println();
+      System.out.println("SELECT:");
+      System.out.println("1 - To add a client");
+      System.out.println("2 - To find a client by id");
 
-    //get user choice
-    int choice = promptMenuSelection();
+      //get user choice
+      int choice = promptMenuSelection();
 
-    switch (choice) {
-      case 1:
-        System.out.println("ADD CUSTOMER");
+      switch (choice) {
+        case 1:
+          System.out.println("ADD CUSTOMER");
 
-        //prompt for customer details
-        String name;
-        String address;
-        String phone;
-        String id;
+          //prompt for customer details
+          String name;
+          String address;
+          String phone;
+          String id;
 
-        System.out.print("Enter id: ");
-        scanner.nextLine();
-        id = scanner.nextLine();
+          System.out.print("Enter id: ");
+          scanner.nextLine();
+          id = scanner.nextLine();
 
-        System.out.print("Enter name: ");
-        name = scanner.nextLine();
+          System.out.print("Enter name: ");
+          name = scanner.nextLine();
 
-        System.out.print("Enter address: ");
-        address = scanner.nextLine();
+          System.out.print("Enter address: ");
+          address = scanner.nextLine();
 
-        System.out.print("Enter phone: ");
-        phone = scanner.nextLine();
+          System.out.print("Enter phone: ");
+          phone = scanner.nextLine();
 
-        //we client data
-        warehouse.addClient(name, address, phone, id);
+          //we client data
+          warehouse.addClient(name, address, phone, id);
 
-        int count = warehouse.getClientsCount();
+          int count = warehouse.getClientsCount();
 
-        System.out.println("Client count is now " + count);
+          System.out.println("Client count is now " + count);
 
-        break;
-      case 2:
-        String clientId;
-        System.out.print("Enter the client's id: ");
-        clientId = scanner.next();
+          break;
+        case 2:
+          String clientId;
+          System.out.print("Enter the client's id: ");
+          clientId = scanner.next();
 
-        Client client = warehouse.findClient(clientId);
+          Client client = warehouse.findClient(clientId);
 
-        break;
-      default:
-        break;
-    }
+          if (client == null) {
+            System.out.print("No client found");
+          } else {
+            System.out.print("The client found is " + client.toString());
+          }
+
+          break;
+        default:
+          break;
+      }
+
+      //update user choice
+      System.out.print("Would you like to continue ");
+      System.out.println("with the clients management?");
+      System.out.println("Enter 1 for yes. Anything else for no");
+
+      int res = scanner.nextInt();
+      if (res == 1) keepAdding = true; else keepAdding = false;
+    } while (keepAdding);
   }
 
   /**

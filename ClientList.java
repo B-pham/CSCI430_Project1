@@ -64,4 +64,22 @@ public class ClientList implements Serializable {
       cnfe.printStackTrace();
     }
   }
+
+  /**
+   * find client by id
+   */
+  public Client findClient(String clientId) {
+    System.out.println("received " + clientId);
+
+    Iterator<Client> i = clients.iterator();
+
+    while (i.hasNext()) {
+      System.out.println("searching");
+      Client client = (Client) i.next();
+      if (client.getId() == clientId) {
+        return client;
+      }
+    }
+    return null;
+  }
 }

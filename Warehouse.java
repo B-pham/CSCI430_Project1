@@ -42,6 +42,6 @@ public class Warehouse {
    * find a client by id
    */
   public Client findClient(String clientId) {
-    return null;
+    return clientList.findClient(clientId);
   }
 }
