@@ -1,0 +1,176 @@
+Script started on Sat 13 Feb 2021 09:27:30 PM CST
+]0;ar5777gq@ahscentos:~/Desktop/CSCI430/CSCI430/HW3[?1034h[ar5777gq@ahscentos HW3]$ ls
+Client.java      ProductList.java    SupplierList.java  typescript
+ClientList.java  ProductTester.java  supplierTest.java  Warehouse.java
+Product.java     Supplier.java       Tester.java
+]0;ar5777gq@ahscentos:~/Desktop/CSCI430/CSCI430/HW3[ar5777gq@ahscentos HW3]$ javac Tester.java 
+]0;ar5777gq@ahscentos:~/Desktop/CSCI430/CSCI430/HW3[ar5777gq@ahscentos HW3]$ ls
+Client.class      Product.class      ProductTester.java  SupplierList.java  typescript
+Client.java       Product.java       Supplier.class      supplierTest.java  Warehouse.class
+ClientList.class  ProductList.class  Supplier.java       Tester.class       Warehouse.java
+ClientList.java   ProductList.java   SupplierList.class  Tester.java
+]0;ar5777gq@ahscentos:~/Desktop/CSCI430/CSCI430/HW3[ar5777gq@ahscentos HW3]$ java Tester.[K
+		Welcome CSCI Warehouse
+You can use this program to manage clients, suppliers, and products
+
+		MAIN MENU
+
+SELECT:
+1 - To manage clients
+2 - To manage suppliers
+3 - To manage products
+0 - To exit the program
+::=>: 1
+
+You selected 1: Manage Clients
+
+CLIENT MANAGEMENT MENU
+
+SELECT:
+1 - To add a client
+2 - To find a client by id
+::=>: 1
+
+You selected 1ADD CLIENT
+Enter id: 1
+Enter name: Tom Braddy
+Enter address: 123 mian street St Cloud MN 12345
+Enter phone: 3201231234
+1 clients
+ clients true
+Client count is now 1
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:y
+
+CLIENT MANAGEMENT MENU
+
+SELECT:
+1 - To add a client
+2 - To find a client by id
+::=>: 2
+
+You selected 2SEARCH CLIENT
+
+Enter the client's id: 1
+received 1
+searching client...
+**** found it...
+The client found is Client{name=Tom Braddy, address=123 mian street St Cloud MN 12345, phone=3201231234, id=1, shopCart=[], transactions=[]}
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:n
+Would you like to perform another operation?
+
+Enter y for yes. Anything else for no:y
+		Welcome CSCI Warehouse
+You can use this program to manage clients, suppliers, and products
+
+		MAIN MENU
+
+SELECT:
+1 - To manage clients
+2 - To manage suppliers
+3 - To manage products
+0 - To exit the program
+::=>: 2
+
+You selected 2: Manage Suppliers
+
+SUPPLIER MANAGEMENT MENU
+
+SELECT:
+1 - To add a supplier
+2 - To find a supplier by id
+::=>: 1
+
+You selected 1ADD SUPPLIER
+
+Enter id: 2
+Enter name: James Hultomn
+Enter address: 2563 Best Street St Cloud MN 12345
+Enter phone: 320456232
+1 supplier
+ supplier true
+supplier count is now 1
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:y
+
+SUPPLIER MANAGEMENT MENU
+
+SELECT:
+1 - To add a supplier
+2 - To find a supplier by id
+::=>: 2
+
+You selected 2SEARCH SUPPLIER
+
+Enter the supplier's id: 2
+received 2
+searching supplier...
+**** found it...
+The supplier found is Supplier{name=James Hulton, address=2563 Best Street St Cloud MN 12345, phone=320456232, id=2, shopCart=[], transactions=[]}
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:yn
+Would you like to perform another operation?
+
+Enter y for yes. Anything else for no:y
+		Welcome CSCI Warehouse
+You can use this program to manage clients, suppliers, and products
+
+		MAIN MENU
+
+SELECT:
+1 - To manage clients
+2 - To manage suppliers
+3 - To manage products
+0 - To exit the program
+::=>: 3
+
+You selected 3: Manage Products
+
+PRODUCT MANAGEMENT MENU
+
+SELECT:
+1 - To add a product
+2 - To find a priduct by id
+::=>: 1
+
+You selected 1ADD PRODUCT
+
+Enter id: 25456
+Enter name: Tomato Paste
+Enter price: 12.25
+1 product
+ products true
+products count is now 1
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:y
+
+PRODUCT MANAGEMENT MENU
+
+SELECT:
+1 - To add a product
+2 - To find a priduct by id
+::=>: 2
+
+You selected 2SEARCH PRODUCT
+
+
+Enter the product's id: 25456
+received 25456
+searching product...
+**** found it...
+The product found is Name: Tomato Paste, Price: 12.25, ID: 25456
+Would you like to continue with the clients management?
+
+Enter y for yes. Anything else for no:n
+Would you like to perform another operation?
+
+Enter y for yes. Anything else for no:n
+]0;ar5777gq@ahscentos:~/Desktop/CSCI430/CSCI430/HW3[ar5777gq@ahscentos HW3]$ exit
+
+Script done on Sat 13 Feb 2021 09:30:25 PM CST
