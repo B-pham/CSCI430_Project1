@@ -39,7 +39,7 @@ public class Tester {
         default:
           System.out.println(": Invalid choice");
           System.out.println("Please make a valid choice");
-          break;
+          continue;
       }
 
       //update user choice
@@ -161,7 +161,7 @@ public class Tester {
           }
           break;
         default:
-          break;
+          continue;
       }
 
       //update user choice
@@ -240,7 +240,7 @@ public class Tester {
           }
           break;
         default:
-          break;
+          continue;
       }
 
       //update user choice
@@ -315,7 +315,7 @@ public class Tester {
           }
           break;
         default:
-          break;
+          continue;
       }
 
       //update user choice
