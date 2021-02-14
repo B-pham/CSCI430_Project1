@@ -102,7 +102,7 @@ public class Tester {
 
       switch (choice) {
         case 1:
-          System.out.println("ADD CUSTOMER");
+          System.out.println("ADD CLIENT");
 
           //prompt for customer details
           String name;
@@ -133,7 +133,7 @@ public class Tester {
           break;
         case 2:
           String clientId;
-          System.out.print("Enter the client's id: ");
+          System.out.print("\nEnter the client's id: ");
           clientId = scanner.next();
 
           Client client = warehouse.findClient(clientId);
@@ -151,7 +151,8 @@ public class Tester {
       //update user choice
       System.out.print("Would you like to continue ");
       System.out.println("with the clients management?");
-      System.out.println("Enter 1 for yes. Anything else for no");
+      System.out.println();
+      System.out.print("Enter 1 for yes. Anything else for no:");
 
       int res = scanner.nextInt();
       if (res == 1) keepAdding = true; else keepAdding = false;
@@ -162,16 +163,75 @@ public class Tester {
    * handle supplier management process
    */
   private static void handleSupplierManagement() {
-    // show menu
-    System.out.println();
-    System.out.println("SUPPLIER MANAGEMENT MENU");
-    System.out.println();
-    System.out.println("SELECT:");
-    System.out.println("1 - To add a supplier");
-    System.out.println("2 - To find a supplier by id");
-    System.out.println("3 - To list all suppliers");
+    boolean keepAdding = false;
+    do {
+      // show menu
+      System.out.println();
+      System.out.println("SUPPLIER MANAGEMENT MENU");
+      System.out.println();
+      System.out.println("SELECT:");
+      System.out.println("1 - To add a supplier");
+      System.out.println("2 - To find a supplier by id");
+      //get user choice
+      int choice = promptMenuSelection();
 
-    int choice = promptMenuSelection();
+      switch (choice) {
+        case 1:
+          System.out.println("ADD SUPPLIER");
+
+          //prompt for customer details
+          String name;
+          String address;
+          String phone;
+          String id;
+
+          System.out.print("Enter id: ");
+          scanner.nextLine();
+          id = scanner.nextLine();
+
+          System.out.print("Enter name: ");
+          name = scanner.nextLine();
+
+          System.out.print("Enter address: ");
+          address = scanner.nextLine();
+
+          System.out.print("Enter phone: ");
+          phone = scanner.nextLine();
+
+          //we client data
+          warehouse.addSupplier(name, address, phone, id);
+
+          int count = warehouse.getSuppliersCount();
+
+          System.out.println("supplier count is now " + count);
+
+          break;
+        case 2:
+          String supplierId;
+          System.out.print("\nEnter the supplier's id: ");
+          supplierId = scanner.next();
+
+          Supplier supplier = warehouse.findSupplier(supplierId);
+
+          if (supplier == null) {
+            System.out.println("No supplier found");
+          } else {
+            System.out.println("The supplier found is " + supplier.toString());
+          }
+          break;
+        default:
+          break;
+      }
+
+      //update user choice
+      System.out.print("Would you like to continue ");
+      System.out.println("with the clients management?");
+      System.out.println();
+      System.out.print("Enter 1 for yes. Anything else for no:");
+
+      int res = scanner.nextInt();
+      if (res == 1) keepAdding = true; else keepAdding = false;
+    } while (keepAdding);
   }
 
   /**
