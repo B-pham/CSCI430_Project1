@@ -5,6 +5,7 @@ public class Warehouse implements Serializable {
   private static final long serialVersionUID = 1L;
   private static ClientList clientList = ClientList.instance();
   private static SupplierList supplierList = SupplierList.instance();
+  private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
 
   private Warehouse() {}
@@ -79,5 +80,31 @@ public class Warehouse implements Serializable {
    */
   public Supplier findSupplier(String supplierId) {
     return supplierList.findSupplier(supplierId);
+  }
+
+  /**
+   * add product to products list
+   * @param name
+   * @param price
+   * @param id
+   * @return
+   */
+  public boolean addProduct(String name, double price, String id) {
+    Product product = new Product(name, price, id);
+    return productList.insertProduct(product);
+  }
+
+  /**
+   * get number of products in the list
+   */
+  public int getProductsCount() {
+    return productList.getProductsCount();
+  }
+
+  /**
+   * find a product by id
+   */
+  public Product findProduct(String productId) {
+    return productList.findProduct(productId);
   }
 }

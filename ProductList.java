@@ -1,16 +1,12 @@
 import java.io.*;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ProductList implements Serializable {
 
-  /**
-   *
-   */
   private static final long serialVersionUID = 1L;
   private List<Product> products = new LinkedList<Product>();
   private static ProductList productList;
+  private int productCount = 0;
 
   private ProductList() {}
 
@@ -23,12 +19,22 @@ public class ProductList implements Serializable {
   }
 
   public boolean insertProduct(Product product) {
-    products.add(product);
-    return true;
+    productCount += 1;
+    System.out.println(productCount + " product");
+    boolean result = products.add(product);
+    System.out.println(" products " + result);
+    return result;
   }
 
   public Iterator<Product> getProducts() {
     return products.iterator();
+  }
+
+  /**
+   * get number of product in the list
+   */
+  public int getProductsCount() {
+    return productCount;
   }
 
   private void writeObject(java.io.ObjectOutputStream output) {
@@ -36,7 +42,7 @@ public class ProductList implements Serializable {
       output.defaultWriteObject();
       output.writeObject(productList);
     } catch (IOException ioe) {
-      System.out.println(ioe);
+      ioe.printStackTrace();
     }
   }
 
@@ -53,13 +59,28 @@ public class ProductList implements Serializable {
         }
       }
     } catch (IOException ioe) {
-      System.out.println("in ProductList readObject \n" + ioe);
+      ioe.printStackTrace();
     } catch (ClassNotFoundException cnfe) {
       cnfe.printStackTrace();
     }
   }
 
-  public String toString() {
-    return products.toString();
+  /**
+   * find product by id
+   */
+  public Product findProduct(String productId) {
+    System.out.println("received " + productId);
+
+    for (int i = 0; i < products.size(); i++) {
+      System.out.println("searching product...");
+      Product product = (Product) products.get(i);
+
+      if (product.getId().equals(productId)) {
+        System.out.println("**** found it...");
+        return product;
+      }
+    }
+    System.out.println("didn't find anything");
+    return null;
   }
 }
