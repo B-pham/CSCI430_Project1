@@ -1,11 +1,19 @@
-import java.util.*;
-import java.lang.*;
 import java.io.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ProductList implements Serializable {
-  private List products = new LinkedList();
+
+  /**
+   *
+   */
+  private static final long serialVersionUID = 1L;
+  private List<Product> products = new LinkedList<Product>();
   private static ProductList productList;
-  private ProductList() {
-  }
+
+  private ProductList() {}
+
   public static ProductList instance() {
     if (productList == null) {
       return (productList = new ProductList());
@@ -13,22 +21,25 @@ public class ProductList implements Serializable {
       return productList;
     }
   }
-  
+
   public boolean insertProduct(Product product) {
     products.add(product);
     return true;
   }
-  public Iterator getProducts() {
+
+  public Iterator<Product> getProducts() {
     return products.iterator();
   }
+
   private void writeObject(java.io.ObjectOutputStream output) {
     try {
       output.defaultWriteObject();
       output.writeObject(productList);
-    } catch(IOException ioe) {
+    } catch (IOException ioe) {
       System.out.println(ioe);
     }
   }
+
   private void readObject(java.io.ObjectInputStream input) {
     try {
       if (productList != null) {
@@ -41,12 +52,13 @@ public class ProductList implements Serializable {
           input.readObject();
         }
       }
-    } catch(IOException ioe) {
+    } catch (IOException ioe) {
       System.out.println("in ProductList readObject \n" + ioe);
-    } catch(ClassNotFoundException cnfe) {
+    } catch (ClassNotFoundException cnfe) {
       cnfe.printStackTrace();
     }
   }
+
   public String toString() {
     return products.toString();
   }

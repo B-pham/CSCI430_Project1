@@ -1,60 +1,73 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
+public class Client implements Serializable {
 
-public class Client implements Serializable{
+  private static final long serialVersionUID = 1L;
+  private String name;
+  private String address;
+  private String phone;
+  private String id;
 
+  private List<Product> shopCart = new LinkedList<Product>();
+  private List<Product> transactions = new LinkedList<Product>();
 
-    private static final long serialVersionUID = 1L;
-    private String name;
-    private String address;
-    private String phone;
-    private String id;
-    
-    private List shopCart = new LinkedList();    
-    private List transactions = new LinkedList();
-    
-    public Client(String name, String address, String Phone, String id){
-        this.name = name;
-        this.address = address;
-        this.phone = Phone;
-        this.id = id;
-    }
-    
-    public String getName(){
-        return name;
-    }
+  public Client(String name, String address, String Phone, String id) {
+    this.name = name;
+    this.address = address;
+    this.phone = Phone;
+    this.id = id;
+  }
 
-    public String getAddress() {
-        return address;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getAddress() {
+    return address;
+  }
 
-    public String getId() {
-        return id;
-    }
-    
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setId(String id) {
-        this.id = id;
-    } 
+  public void setAddress(String address) {
+    this.address = address;
+  }
 
-    @Override
-    public String toString() {
-        return "Client{" + "name=" + name + ", address=" + address + ", phone=" + phone + ", id=" + id + ", shopCart=" + shopCart + ", transactions=" + transactions + '}';
-    }    
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return (
+      "Client{" +
+      "name=" +
+      name +
+      ", address=" +
+      address +
+      ", phone=" +
+      phone +
+      ", id=" +
+      id +
+      ", shopCart=" +
+      shopCart +
+      ", transactions=" +
+      transactions +
+      '}'
+    );
+  }
 }

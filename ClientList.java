@@ -4,7 +4,7 @@ import java.util.*;
 public class ClientList implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private List clients = new LinkedList();
+  private List<Client> clients = new LinkedList<Client>();
   private static ClientList clientList;
   private int clientCount = 0;
 
@@ -26,7 +26,7 @@ public class ClientList implements Serializable {
     return result;
   }
 
-  public Iterator getClients() {
+  public Iterator<Client> getClients() {
     return clients.iterator();
   }
 

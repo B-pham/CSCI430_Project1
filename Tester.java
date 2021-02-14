@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import javax.naming.spi.DirStateFactory.Result;
 
 /**
  * Tester program for our warehouse system
