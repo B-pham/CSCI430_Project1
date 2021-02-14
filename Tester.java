@@ -9,35 +9,48 @@ public class Tester {
   private static Warehouse warehouse = Warehouse.instance();
 
   public static void main(String[] args) {
-    showTesterHeader();
-    System.out.println();
-    showMainMenu();
+    boolean keepWorking = false;
+    do {
+      showTesterHeader();
+      System.out.println();
 
-    int choice = promptMenuSelection();
+      showMainMenu();
 
-    // handle selection
-    switch (choice) {
-      case 0:
-        System.out.println(": Exiting program...");
-        System.exit(0);
-        break;
-      case 1:
-        System.out.println(": Manage Clients");
-        handleClientManagement();
-        break;
-      case 2:
-        System.out.println(": Manage Suppliers");
-        handleSupplierManagement();
-        break;
-      case 3:
-        System.out.println(": Manage Products");
-        handleProductManagement();
-        break;
-      default:
-        System.out.println(": Invalid choice");
-        System.out.println("Please make a valid choice");
-        break;
-    }
+      int choice = promptMenuSelection();
+
+      // handle selection
+      switch (choice) {
+        case 0:
+          System.out.println(": Exiting program...");
+          System.exit(0);
+          break;
+        case 1:
+          System.out.println(": Manage Clients");
+          handleClientManagement();
+          break;
+        case 2:
+          System.out.println(": Manage Suppliers");
+          handleSupplierManagement();
+          break;
+        case 3:
+          System.out.println(": Manage Products");
+          handleProductManagement();
+          break;
+        default:
+          System.out.println(": Invalid choice");
+          System.out.println("Please make a valid choice");
+          break;
+      }
+
+      //update user choice
+      System.out.print("Would you like to perform ");
+      System.out.println("another operation?");
+      System.out.println();
+      System.out.print("Enter y for yes. Anything else for no:");
+
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
 
     if (scanner != null) {
       scanner.close();
@@ -88,7 +101,7 @@ public class Tester {
    * Handle client management process
    */
   private static void handleClientManagement() {
-    boolean keepAdding = false;
+    boolean keepWorking = false;
     do { // show menu
       System.out.println();
       System.out.println("CLIENT MANAGEMENT MENU");
@@ -155,18 +168,18 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the clients management?");
       System.out.println();
-      System.out.print("Enter 1 for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no:");
 
-      int res = scanner.nextInt();
-      if (res == 1) keepAdding = true; else keepAdding = false;
-    } while (keepAdding);
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
   }
 
   /**
    * handle supplier management process
    */
   private static void handleSupplierManagement() {
-    boolean keepAdding = false;
+    boolean keepWorking = false;
     do {
       // show menu
       System.out.println();
@@ -234,18 +247,18 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the clients management?");
       System.out.println();
-      System.out.print("Enter 1 for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no:");
 
-      int res = scanner.nextInt();
-      if (res == 1) keepAdding = true; else keepAdding = false;
-    } while (keepAdding);
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
   }
 
   /**
    * handle product management process
    */
   private static void handleProductManagement() {
-    boolean keepAdding = false;
+    boolean keepWorking = false;
     do {
       // show menu
       System.out.println();
@@ -309,10 +322,10 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the clients management?");
       System.out.println();
-      System.out.print("Enter 1 for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no:");
 
-      int res = scanner.nextInt();
-      if (res == 1) keepAdding = true; else keepAdding = false;
-    } while (keepAdding);
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
   }
 }
