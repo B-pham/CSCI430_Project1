@@ -157,6 +157,7 @@ public class Tester {
           }
           break;
         default:
+          System.out.println("That is not a valid input.");
           continue;
       }
 
@@ -164,7 +165,7 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the clients management?");
       System.out.println();
-      System.out.print("Enter y for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no: ");
 
       String res = scanner.next();
       if (res.equals("y")) keepWorking = true; else keepWorking = false;
@@ -232,6 +233,7 @@ public class Tester {
           }
           break;
         default:
+          System.out.println("That is not a valid input.");
           continue;
       }
 
@@ -239,7 +241,7 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the supplier management?");
       System.out.println();
-      System.out.print("Enter y for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no: ");
 
       String res = scanner.next();
       if (res.equals("y")) keepWorking = true; else keepWorking = false;
@@ -303,6 +305,7 @@ public class Tester {
           }
           break;
         default:
+          System.out.println("That is not a valid input.");
           continue;
       }
 
@@ -310,7 +313,7 @@ public class Tester {
       System.out.print("Would you like to continue ");
       System.out.println("with the product management?");
       System.out.println();
-      System.out.print("Enter y for yes. Anything else for no:");
+      System.out.print("Enter y for yes. Anything else for no: ");
 
       String res = scanner.next();
       if (res.equals("y")) keepWorking = true; else keepWorking = false;
