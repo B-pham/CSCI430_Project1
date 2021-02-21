@@ -23,16 +23,14 @@ public class Warehouse implements Serializable {
    * @param name
    * @param address
    * @param phone
-   * @param id
    * @return
    */
   public boolean addClient(
     String name,
     String address,
-    String phone,
-    String id
+    String phone
   ) {
-    Client client = new Client(name, address, phone, id);
+    Client client = new Client(name, address, phone);
     return clientList.insertClient(client);
   }
 
@@ -55,16 +53,14 @@ public class Warehouse implements Serializable {
    * @param name
    * @param address
    * @param phone
-   * @param id
    * @return
    */
   public boolean addSupplier(
     String name,
     String address,
-    String phone,
-    String id
+    String phone
   ) {
-    Supplier supplier = new Supplier(name, address, phone, id);
+    Supplier supplier = new Supplier(name, address, phone);
     return supplierList.insertSupplier(supplier);
   }
 
@@ -86,11 +82,10 @@ public class Warehouse implements Serializable {
    * add product to products list
    * @param name
    * @param price
-   * @param id
    * @return
    */
-  public boolean addProduct(String name, double price, String id) {
-    Product product = new Product(name, price, id);
+  public boolean addProduct(String name, double price) {
+    Product product = new Product(name, price);
     return productList.insertProduct(product);
   }
 

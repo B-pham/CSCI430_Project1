@@ -115,19 +115,15 @@ public class Tester {
 
       switch (choice) {
         case 1:
-          System.out.println("ADD CLIENT");
+          System.out.println(" ADD CLIENT");
 
           //prompt for customer details
           String name;
           String address;
           String phone;
-          String id;
-
-          System.out.print("Enter id: ");
-          scanner.nextLine();
-          id = scanner.nextLine();
 
           System.out.print("Enter name: ");
+          scanner.nextLine();
           name = scanner.nextLine();
 
           System.out.print("Enter address: ");
@@ -137,7 +133,7 @@ public class Tester {
           phone = scanner.nextLine();
 
           //we client data
-          warehouse.addClient(name, address, phone, id);
+          warehouse.addClient(name, address, phone);
 
           int count = warehouse.getClientsCount();
 
@@ -145,7 +141,7 @@ public class Tester {
 
           break;
         case 2:
-          System.out.println("SEARCH CLIENT");
+          System.out.println(" SEARCH CLIENT");
           System.out.println();
 
           String clientId;
@@ -193,20 +189,16 @@ public class Tester {
 
       switch (choice) {
         case 1:
-          System.out.println("ADD SUPPLIER");
+          System.out.println(" ADD SUPPLIER");
           System.out.println();
 
           //prompt for customer details
           String name;
           String address;
           String phone;
-          String id;
-
-          System.out.print("Enter id: ");
-          scanner.nextLine();
-          id = scanner.nextLine();
 
           System.out.print("Enter name: ");
+          scanner.nextLine();
           name = scanner.nextLine();
 
           System.out.print("Enter address: ");
@@ -216,7 +208,7 @@ public class Tester {
           phone = scanner.nextLine();
 
           //we client data
-          warehouse.addSupplier(name, address, phone, id);
+          warehouse.addSupplier(name, address, phone);
 
           int count = warehouse.getSuppliersCount();
 
@@ -224,7 +216,7 @@ public class Tester {
 
           break;
         case 2:
-          System.out.println("SEARCH SUPPLIER");
+          System.out.println(" SEARCH SUPPLIER");
           System.out.println();
 
           String supplierId;
@@ -245,7 +237,7 @@ public class Tester {
 
       //update user choice
       System.out.print("Would you like to continue ");
-      System.out.println("with the clients management?");
+      System.out.println("with the supplier management?");
       System.out.println();
       System.out.print("Enter y for yes. Anything else for no:");
 
@@ -266,32 +258,28 @@ public class Tester {
       System.out.println();
       System.out.println("SELECT:");
       System.out.println("1 - To add a product");
-      System.out.println("2 - To find a priduct by id");
+      System.out.println("2 - To find a product by id");
 
       int choice = promptMenuSelection();
 
       switch (choice) {
         case 1:
-          System.out.println("ADD PRODUCT");
+          System.out.println(" ADD PRODUCT");
           System.out.println();
 
           //prompt for product details
           String name;
           double price;
-          String id;
-
-          System.out.print("Enter id: ");
-          scanner.nextLine();
-          id = scanner.nextLine();
 
           System.out.print("Enter name: ");
+          scanner.nextLine();
           name = scanner.nextLine();
 
           System.out.print("Enter price: ");
           price = scanner.nextDouble();
 
           //we client data
-          warehouse.addProduct(name, price, id);
+          warehouse.addProduct(name, price);
 
           int count = warehouse.getProductsCount();
 
@@ -299,7 +287,7 @@ public class Tester {
 
           break;
         case 2:
-          System.out.println("SEARCH PRODUCT");
+          System.out.println(" SEARCH PRODUCT");
           System.out.println();
 
           String productId;
@@ -320,7 +308,7 @@ public class Tester {
 
       //update user choice
       System.out.print("Would you like to continue ");
-      System.out.println("with the clients management?");
+      System.out.println("with the product management?");
       System.out.println();
       System.out.print("Enter y for yes. Anything else for no:");
 

@@ -4,6 +4,7 @@ import java.util.*;
 public class Supplier implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private static final String SupplierString = "SP";
   private String name;
   private String address;
   private String phone;
@@ -12,11 +13,11 @@ public class Supplier implements Serializable {
   private List<Product> shopCart = new LinkedList<Product>();
   private List<Product> transactions = new LinkedList<Product>();
 
-  public Supplier(String name, String address, String Phone, String id) {
+  public Supplier(String name, String address, String Phone) {
     this.name = name;
     this.address = address;
     this.phone = Phone;
-    this.id = id;
+    this.id = SupplierString + (MemberIdServer.instance()).getId();
   }
 
   public String getName() {

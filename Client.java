@@ -4,6 +4,7 @@ import java.util.*;
 public class Client implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private static final String ClientString = "CL";
   private String name;
   private String address;
   private String phone;
@@ -12,11 +13,11 @@ public class Client implements Serializable {
   private List<Product> shopCart = new LinkedList<Product>();
   private List<Product> transactions = new LinkedList<Product>();
 
-  public Client(String name, String address, String Phone, String id) {
+  public Client(String name, String address, String Phone) {
     this.name = name;
     this.address = address;
     this.phone = Phone;
-    this.id = id;
+    this.id = ClientString + (MemberIdServer.instance()).getId();
   }
 
   public String getName() {

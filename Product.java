@@ -6,14 +6,15 @@ public class Product implements Serializable {
    *
    */
   private static final long serialVersionUID = 1L;
+  private static final String ProductString = "PR";
   private String name;
   private double price;
   private String id;
 
-  public Product(String name, double price, String id) {
+  public Product(String name, double price) {
     this.name = name;
     this.price = price;
-    this.id = id;
+    this.id = ProductString + (MemberIdServer.instance()).getId();
   }
 
   public double getPrice() {
