@@ -42,7 +42,21 @@ public class Warehouse implements Serializable {
         System.out.println(clients.next().toString());
       }
     } else {
-      System.out.println("THere is nothing in your client list");
+      System.out.println("There is nothing in your client list");
+    }
+  }
+
+  /**
+   * display all suppliers
+   */
+  public void displaySuppliers() {
+    Iterator<Supplier> suppliers = supplierList.getSuppliers();
+    if (suppliers.hasNext()) {
+      while (suppliers.hasNext()) {
+        System.out.println(suppliers.next().toString());
+      }
+    } else {
+      System.out.println("There is nothing in your supplier list");
     }
   }
 

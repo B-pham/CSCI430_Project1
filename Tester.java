@@ -242,6 +242,11 @@ public class Tester {
             System.out.println("The supplier found is " + supplier.toString());
           }
           break;
+        case 4:
+          System.out.println(" DISPLAY SUPPLIERS");
+          System.out.println();
+          warehouse.displaySuppliers();
+          break;
         default:
           System.out.println("That is not a valid input.");
           continue;
