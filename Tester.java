@@ -289,6 +289,7 @@ public class Tester {
           String name;
           double price;
           String supplierID;
+          int quantity = 1;
 
           System.out.print("Enter name: ");
           scanner.nextLine();
@@ -297,12 +298,16 @@ public class Tester {
           System.out.print("Enter price: ");
           price = scanner.nextDouble();
 
+          System.out.print("Enter quantity: ");
+          scanner.nextLine();
+          quantity = scanner.nextInt();
+
           System.out.print("Enter supplier ID: ");
           scanner.nextLine();
           supplierID = scanner.nextLine();
 
           //we client data
-          if (warehouse.addProduct(name, price, supplierID) == true) {
+          if (warehouse.addProduct(name, price, supplierID, quantity) == true) {
             int count = warehouse.getProductsCount();
             System.out.println("products count is now " + count);
           }

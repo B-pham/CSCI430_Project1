@@ -120,9 +120,14 @@ public class Warehouse implements Serializable {
    * @param price
    * @return
    */
-  public boolean addProduct(String name, double price, String supplierID) {
+  public boolean addProduct(
+    String name,
+    double price,
+    String supplierID,
+    int quantity
+  ) {
     if (this.checkSupplier(supplierID) == true) {
-      Product product = new Product(name, price, supplierID);
+      Product product = new Product(name, price, supplierID, quantity);
       return productList.insertProduct(product);
     } else return false;
   }

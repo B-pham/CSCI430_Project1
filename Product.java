@@ -9,18 +9,24 @@ public class Product implements Serializable {
   private static final String ProductString = "PR";
   private String name;
   private double price;
+  private int quantity;
   private String id;
   private String supplierID;
 
-  public Product(String name, double price, String supID) {
+  public Product(String name, double price, String supID, int quantity) {
     this.name = name;
     this.price = price;
+    this.quantity = quantity;
     this.id = ProductString + (MemberIdServer.instance()).getId();
     this.supplierID = supID;
   }
 
   public double getPrice() {
     return price;
+  }
+
+  public double getQuantity() {
+    return quantity;
   }
 
   public String getName() {
@@ -33,6 +39,15 @@ public class Product implements Serializable {
 
   @Override
   public String toString() {
-    return "Name: " + name + ", Price: " + price + ", ID: " + id;
+    return (
+      "Name: " +
+      name +
+      ", Price: " +
+      price +
+      ", ID: " +
+      id +
+      ", Quantity: " +
+      quantity
+    );
   }
 }
