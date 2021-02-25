@@ -198,8 +198,7 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a supplier");
       System.out.println("2 - To find a supplier by id");
-      System.out.println("3 - To add product to supplier inventory");
-      System.out.println("4 - To display supplier inventory");
+      System.out.println("3 - To display suppliers");
       //get user choice
       int choice = promptMenuSelection();
 
@@ -247,7 +246,7 @@ public class Tester {
             System.out.println("The supplier found is " + supplier.toString());
           }
           break;
-        case 4:
+        case 3:
           System.out.println(" DISPLAY SUPPLIERS");
           System.out.println();
           warehouse.displaySuppliers();
