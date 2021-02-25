@@ -8,7 +8,7 @@ public class Warehouse implements Serializable {
   private static SupplierList supplierList = SupplierList.instance();
   private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
-  private static Iterator<Product> products = productList.getProducts();
+  private static List<Transaction> transactions = new LinkedList<Transaction>();
 
   private Warehouse() {}
 
@@ -88,6 +88,38 @@ public class Warehouse implements Serializable {
       }
     } else {
       System.out.println("There is nothing in your product list");
+    }
+  }
+
+  /**
+   * display transaction by client
+   */
+  public void displayTransactionsByClient(String clientId) {
+    if (!transactions.isEmpty()) {
+      transactions.forEach(
+        transaction -> {
+          if (transaction.getClientId().equals(clientId)) {
+            System.out.println(transaction.toString());
+          }
+        }
+      );
+    } else {
+      System.out.println("There is no transaction to display for this client");
+    }
+  }
+
+  /**
+   * display all transactions
+   */
+  public void displayTransactions() {
+    if (!transactions.isEmpty()) {
+      transactions.forEach(
+        transaction -> {
+          System.out.println(transaction.toString());
+        }
+      );
+    } else {
+      System.out.println("There is nothing in your transaction list");
     }
   }
 

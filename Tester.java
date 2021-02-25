@@ -36,6 +36,10 @@ public class Tester {
           System.out.println(": Manage Products");
           handleProductManagement();
           break;
+        case 4:
+          System.out.println(": Manage Transactions");
+          handleTransactionManagement();
+          break;
         default:
           System.out.println(": Invalid choice");
           System.out.println("Please make a valid choice");
@@ -76,6 +80,7 @@ public class Tester {
     System.out.println("1 - To manage clients");
     System.out.println("2 - To manage suppliers");
     System.out.println("3 - To manage products");
+    System.out.println("4 - To manage transactions");
     System.out.println("0 - To exit the program");
   }
 
@@ -352,6 +357,52 @@ public class Tester {
       //update user choice
       System.out.print("Would you like to continue ");
       System.out.println("with the product management?");
+      System.out.println();
+      System.out.print("Enter y for yes. Anything else for no: ");
+
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
+  }
+
+  /**
+   * handle transaction management
+   */
+  private static void handleTransactionManagement() {
+    boolean keepWorking = false;
+    do {
+      // show menu
+      System.out.println();
+      System.out.println("TRANSACTION MANAGEMENT MENU");
+      System.out.println();
+      System.out.println("SELECT:");
+      System.out.println("1 - To display all transactions");
+      System.out.println("2 - To display transactions by client");
+
+      int choice = promptMenuSelection();
+
+      switch (choice) {
+        case 1:
+          System.out.println(" DISPLAY ALL PRODUCTS");
+          System.out.println();
+          warehouse.displayTransactions();
+          break;
+        case 2:
+          System.out.println(" DISPLAY TRANSACTION BY CLIENT");
+          System.out.println();
+          String clientId;
+          System.out.print("\nEnter the client's id: ");
+          clientId = scanner.next();
+          warehouse.displayTransactionsByClient(clientId);
+          break;
+        default:
+          System.out.println("That is not a valid input.");
+          continue;
+      }
+
+      //update user choice
+      System.out.print("Would you like to continue ");
+      System.out.println("with the transaction management?");
       System.out.println();
       System.out.print("Enter y for yes. Anything else for no: ");
 

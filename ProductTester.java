@@ -3,8 +3,8 @@ import java.util.*;
 public class ProductTester {
 
   public static void main(String[] s) {
-    Product b1 = new Product("qq", 15.00);
-    Product b2 = new Product("ee", 10.00);
+    Product b1 = new Product("qq", 15.00, "", 0);
+    Product b2 = new Product("ee", 10.00, "", 0);
     ProductList productList = ProductList.instance();
     productList.insertProduct(b1);
     productList.insertProduct(b2);
