@@ -9,6 +9,7 @@ public class Warehouse implements Serializable {
   private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
   private static Iterator<Product> products = productList.getProducts();
+
   private Warehouse() {}
 
   public static Warehouse instance() {
@@ -26,13 +27,23 @@ public class Warehouse implements Serializable {
    * @param phone
    * @return
    */
-  public boolean addClient(
-    String name,
-    String address,
-    String phone
-  ) {
+  public boolean addClient(String name, String address, String phone) {
     Client client = new Client(name, address, phone);
     return clientList.insertClient(client);
+  }
+
+  /**
+   * display all clients
+   */
+  public void displayClients() {
+    Iterator<Client> clients = clientList.getClients();
+    if (clients.hasNext()) {
+      while (clients.hasNext()) {
+        System.out.println(clients.next().toString());
+      }
+    } else {
+      System.out.println("THere is nothing in your client list");
+    }
   }
 
   /**
@@ -56,11 +67,7 @@ public class Warehouse implements Serializable {
    * @param phone
    * @return
    */
-  public boolean addSupplier(
-    String name,
-    String address,
-    String phone
-  ) {
+  public boolean addSupplier(String name, String address, String phone) {
     Supplier supplier = new Supplier(name, address, phone);
     return supplierList.insertSupplier(supplier);
   }
@@ -86,13 +93,10 @@ public class Warehouse implements Serializable {
    * @return
    */
   public boolean addProduct(String name, double price, String supplierID) {
-    if(this.checkSupplier(supplierID) == true){
+    if (this.checkSupplier(supplierID) == true) {
       Product product = new Product(name, price, supplierID);
-      return productList.insertProduct(product);      
-    }
-    else
-      return false;
-
+      return productList.insertProduct(product);
+    } else return false;
   }
 
   /**
@@ -110,26 +114,18 @@ public class Warehouse implements Serializable {
   }
 
   public boolean checkSupplier(String supplierID) {
-
     //Checks if the there are suppliers
     if (getSuppliersCount() == 0) {
       System.out.println("There are no suppliers to provide products.");
-      return false;      
-    }
-    else{
+      return false;
+    } else {
       //checks if the supplier exists in the list of suppliers
       Supplier supplier = this.findSupplier(supplierID);
-      if (supplier == null)
-        return false;
-      else
-        return true;
-      }
+      if (supplier == null) return false; else return true;
     }
-  
-  public void getAllProdId(){
-      productList.getAllProducts();
-  }    
+  }
+
+  public void getAllProdId() {
+    productList.getAllProducts();
+  }
 }
-
-
-

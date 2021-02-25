@@ -159,6 +159,11 @@ public class Tester {
             System.out.println("The client found is " + client.toString());
           }
           break;
+        case 4:
+          System.out.println(" DISPLAY CLIENTS");
+          System.out.println();
+          warehouse.displayClients();
+          break;
         default:
           System.out.println("That is not a valid input.");
           continue;
@@ -292,15 +297,13 @@ public class Tester {
           supplierID = scanner.nextLine();
 
           //we client data
-          if(warehouse.addProduct(name, price, supplierID) == true){
-            int count = warehouse.getProductsCount();  
+          if (warehouse.addProduct(name, price, supplierID) == true) {
+            int count = warehouse.getProductsCount();
             System.out.println("products count is now " + count);
           }
 
-
           break;
         case 2:
-
           System.out.println(" SEARCH PRODUCT");
           System.out.println();
 
@@ -315,12 +318,10 @@ public class Tester {
           } else {
             System.out.println("The product found is " + product.toString());
           }
-
-          case 3:
-            warehouse.getAllProdId();
+        case 3:
+          warehouse.getAllProdId();
           break;
-        
-          default:
+        default:
           System.out.println("That is not a valid input.");
           continue;
       }
