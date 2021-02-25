@@ -276,7 +276,7 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a product");
       System.out.println("2 - To find a product by id");
-      System.out.println("3 - View all products by id");
+      System.out.println("3 - To display products");
 
       int choice = promptMenuSelection();
 
@@ -324,7 +324,9 @@ public class Tester {
             System.out.println("The product found is " + product.toString());
           }
         case 3:
-          warehouse.getAllProdId();
+          System.out.println(" DISPLAY PRODUCTS");
+          System.out.println();
+          warehouse.displayProducts();
           break;
         default:
           System.out.println("That is not a valid input.");

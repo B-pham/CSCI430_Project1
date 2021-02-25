@@ -50,13 +50,27 @@ public class Warehouse implements Serializable {
    * display all suppliers
    */
   public void displaySuppliers() {
+    Iterator<Product> products = productList.getProducts();
+    if (products.hasNext()) {
+      while (products.hasNext()) {
+        System.out.println(products.next().toString());
+      }
+    } else {
+      System.out.println("There is nothing in your supplier list");
+    }
+  }
+
+  /**
+   * display all products
+   */
+  public void displayProducts() {
     Iterator<Supplier> suppliers = supplierList.getSuppliers();
     if (suppliers.hasNext()) {
       while (suppliers.hasNext()) {
         System.out.println(suppliers.next().toString());
       }
     } else {
-      System.out.println("There is nothing in your supplier list");
+      System.out.println("There is nothing in your product list");
     }
   }
 
