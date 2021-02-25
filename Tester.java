@@ -109,6 +109,9 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a client");
       System.out.println("2 - To find a client by id");
+      System.out.println("3 - To add product to client shopping cart");
+      System.out.println("4 - To display client shopping cart");
+      System.out.println("5 - To place order");
 
       //get user choice
       int choice = promptMenuSelection();
@@ -185,6 +188,8 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a supplier");
       System.out.println("2 - To find a supplier by id");
+      System.out.println("3 - To add product to supplier inventory");
+      System.out.println("4 - To display supplier inventory");
       //get user choice
       int choice = promptMenuSelection();
 
@@ -239,7 +244,7 @@ public class Tester {
 
       //update user choice
       System.out.print("Would you like to continue ");
-      System.out.println("with the supplier management?");
+      System.out.println("with the su plier management?");
       System.out.println();
       System.out.print("Enter y for yes. Anything else for no: ");
 
