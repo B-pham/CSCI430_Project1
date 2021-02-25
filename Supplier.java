@@ -11,7 +11,8 @@ public class Supplier implements Serializable {
   private String id;
 
   private List<Product> shopCart = new LinkedList<Product>();
-  private List<Product> transactions = new LinkedList<Product>();
+  private List<Product> inventory = new LinkedList<Product>();
+  private List<Order> orders = new LinkedList<Order>();
 
   public Supplier(String name, String address, String Phone) {
     this.name = name;
@@ -67,7 +68,7 @@ public class Supplier implements Serializable {
       ", shopCart=" +
       shopCart +
       ", transactions=" +
-      transactions +
+      orders +
       '}'
     );
   }

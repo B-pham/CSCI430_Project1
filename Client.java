@@ -11,13 +11,17 @@ public class Client implements Serializable {
   private String id;
 
   private List<Product> shopCart = new LinkedList<Product>();
-  private List<Product> transactions = new LinkedList<Product>();
+  private List<Order> orders = new LinkedList<Order>();
 
   public Client(String name, String address, String Phone) {
     this.name = name;
     this.address = address;
     this.phone = Phone;
     this.id = ClientString + (MemberIdServer.instance()).getId();
+  }
+
+  public List<Product> getShopCart() {
+    return this.shopCart;
   }
 
   public String getName() {
@@ -66,9 +70,7 @@ public class Client implements Serializable {
       id +
       ", shopCart=" +
       shopCart +
-      ", transactions=" +
-      transactions +
-      '}'
+      "}"
     );
   }
 }
