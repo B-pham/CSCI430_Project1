@@ -10,7 +10,7 @@ public class Supplier implements Serializable {
   private String phone;
   private String id;
 
-  private List<Product> shopCart = new LinkedList<Product>();
+
   private List<Product> inventory = new LinkedList<Product>();
   private List<Order> orders = new LinkedList<Order>();
 
@@ -56,20 +56,18 @@ public class Supplier implements Serializable {
   @Override
   public String toString() {
     return (
-      "Supplier{" +
-      "name=" +
+      "Supplier{ " +
+      "name = " +
       name +
-      ", address=" +
-      address +
-      ", phone=" +
+      ", address= " +
+      address + 
+      ", phone= " +
       phone +
-      ", id=" +
+      ", id= " +
       id +
-      ", shopCart=" +
-      shopCart +
-      ", transactions=" +
+      ", transactions= " +
       orders +
-      '}'
+      " }"
     );
   }
 }

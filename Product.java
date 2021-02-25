@@ -10,11 +10,13 @@ public class Product implements Serializable {
   private String name;
   private double price;
   private String id;
+  private String supplierID;
 
-  public Product(String name, double price) {
+  public Product(String name, double price, String supID) {
     this.name = name;
     this.price = price;
     this.id = ProductString + (MemberIdServer.instance()).getId();
+    this.supplierID = supID;
   }
 
   public double getPrice() {

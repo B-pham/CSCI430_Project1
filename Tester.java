@@ -266,6 +266,7 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a product");
       System.out.println("2 - To find a product by id");
+      System.out.println("3 - View all products by id");
 
       int choice = promptMenuSelection();
 
@@ -277,6 +278,7 @@ public class Tester {
           //prompt for product details
           String name;
           double price;
+          String supplierID;
 
           System.out.print("Enter name: ");
           scanner.nextLine();
@@ -285,15 +287,20 @@ public class Tester {
           System.out.print("Enter price: ");
           price = scanner.nextDouble();
 
+          System.out.print("Enter supplier ID: ");
+          scanner.nextLine();
+          supplierID = scanner.nextLine();
+
           //we client data
-          warehouse.addProduct(name, price);
+          if(warehouse.addProduct(name, price, supplierID) == true){
+            int count = warehouse.getProductsCount();  
+            System.out.println("products count is now " + count);
+          }
 
-          int count = warehouse.getProductsCount();
-
-          System.out.println("products count is now " + count);
 
           break;
         case 2:
+
           System.out.println(" SEARCH PRODUCT");
           System.out.println();
 
@@ -308,8 +315,12 @@ public class Tester {
           } else {
             System.out.println("The product found is " + product.toString());
           }
+
+          case 3:
+            warehouse.getAllProdId();
           break;
-        default:
+        
+          default:
           System.out.println("That is not a valid input.");
           continue;
       }

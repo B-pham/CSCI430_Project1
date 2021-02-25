@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.util.*;
 
 public class Warehouse implements Serializable {
 
@@ -7,7 +8,7 @@ public class Warehouse implements Serializable {
   private static SupplierList supplierList = SupplierList.instance();
   private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
-
+  private static Iterator<Product> products = productList.getProducts();
   private Warehouse() {}
 
   public static Warehouse instance() {
@@ -84,9 +85,14 @@ public class Warehouse implements Serializable {
    * @param price
    * @return
    */
-  public boolean addProduct(String name, double price) {
-    Product product = new Product(name, price);
-    return productList.insertProduct(product);
+  public boolean addProduct(String name, double price, String supplierID) {
+    if(this.checkSupplier(supplierID) == true){
+      Product product = new Product(name, price, supplierID);
+      return productList.insertProduct(product);      
+    }
+    else
+      return false;
+
   }
 
   /**
@@ -102,4 +108,28 @@ public class Warehouse implements Serializable {
   public Product findProduct(String productId) {
     return productList.findProduct(productId);
   }
+
+  public boolean checkSupplier(String supplierID) {
+
+    //Checks if the there are suppliers
+    if (getSuppliersCount() == 0) {
+      System.out.println("There are no suppliers to provide products.");
+      return false;      
+    }
+    else{
+      //checks if the supplier exists in the list of suppliers
+      Supplier supplier = this.findSupplier(supplierID);
+      if (supplier == null)
+        return false;
+      else
+        return true;
+      }
+    }
+  
+  public void getAllProdId(){
+      productList.getAllProducts();
+  }    
 }
+
+
+

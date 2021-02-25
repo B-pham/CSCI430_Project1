@@ -3,8 +3,8 @@ import java.util.*;
 public class ProductTester {
 
   public static void main(String[] s) {
-    Product b1 = new Product("qq", 15.00, "b1");
-    Product b2 = new Product("ee", 10.00, "b2");
+    Product b1 = new Product("qq", 15.00);
+    Product b2 = new Product("ee", 10.00);
     ProductList productList = ProductList.instance();
     productList.insertProduct(b1);
     productList.insertProduct(b2);
@@ -17,7 +17,7 @@ public class ProductTester {
     Iterator<Product> products = productList.getProducts();
     System.out.println("List of products");
     while (products.hasNext()) {
-      System.out.println(products.next());
+      System.out.println(products.next().getId());
     }
   }
 }

@@ -83,4 +83,13 @@ public class ProductList implements Serializable {
     System.out.println("didn't find anything");
     return null;
   }
+
+  public void getAllProducts() {
+    Iterator<Product> ProductsID = this.getProducts();
+
+    System.out.println();
+    while(ProductsID.hasNext()){
+      System.out.println(ProductsID.next().getId() + " ");
+    } 
+  }
 }
