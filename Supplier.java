@@ -10,7 +10,6 @@ public class Supplier implements Serializable {
   private String phone;
   private String id;
 
-
   private List<Product> inventory = new LinkedList<Product>();
   private List<Order> orders = new LinkedList<Order>();
 
@@ -60,7 +59,7 @@ public class Supplier implements Serializable {
       "name = " +
       name +
       ", address= " +
-      address + 
+      address +
       ", phone= " +
       phone +
       ", id= " +

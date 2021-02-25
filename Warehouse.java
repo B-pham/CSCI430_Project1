@@ -47,13 +47,27 @@ public class Warehouse implements Serializable {
   }
 
   /**
-   * display all suppliers
+   * display all products
    */
-  public void displaySuppliers() {
+  public void displayProducts() {
     Iterator<Product> products = productList.getProducts();
     if (products.hasNext()) {
       while (products.hasNext()) {
         System.out.println(products.next().toString());
+      }
+    } else {
+      System.out.println("There is nothing in your product list");
+    }
+  }
+
+  /**
+   * display all suppliers
+   */
+  public void displaySuppliers() {
+    Iterator<Supplier> suppliers = supplierList.getSuppliers();
+    if (suppliers.hasNext()) {
+      while (suppliers.hasNext()) {
+        System.out.println(suppliers.next().toString());
       }
     } else {
       System.out.println("There is nothing in your supplier list");
@@ -61,13 +75,16 @@ public class Warehouse implements Serializable {
   }
 
   /**
-   * display all products
+   * display products by supplier
    */
-  public void displayProducts() {
-    Iterator<Supplier> suppliers = supplierList.getSuppliers();
-    if (suppliers.hasNext()) {
-      while (suppliers.hasNext()) {
-        System.out.println(suppliers.next().toString());
+  public void displayProductsBySupplier(String supplierId) {
+    Iterator<Product> products = productList.getProducts();
+    if (products.hasNext()) {
+      while (products.hasNext()) {
+        Product product = products.next();
+        if (product.getSupplierID().equals(supplierId)) {
+          System.out.println(product.toString());
+        }
       }
     } else {
       System.out.println("There is nothing in your product list");

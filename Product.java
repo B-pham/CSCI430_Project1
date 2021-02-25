@@ -25,6 +25,10 @@ public class Product implements Serializable {
     return price;
   }
 
+  public String getSupplierID() {
+    return supplierID;
+  }
+
   public double getQuantity() {
     return quantity;
   }
@@ -47,7 +51,9 @@ public class Product implements Serializable {
       ", ID: " +
       id +
       ", Quantity: " +
-      quantity
+      quantity +
+      ", Supplier: " +
+      supplierID
     );
   }
 }
