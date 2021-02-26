@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -40,6 +42,9 @@ public class Tester {
           System.out.println(": Manage Transactions");
           handleTransactionManagement();
           break;
+        case 5:
+          populateTestData();
+          break;
         default:
           System.out.println(": Invalid choice");
           System.out.println("Please make a valid choice");
@@ -81,6 +86,7 @@ public class Tester {
     System.out.println("2 - To manage suppliers");
     System.out.println("3 - To manage products");
     System.out.println("4 - To manage transactions");
+    System.out.println("5 - To populate test data");
     System.out.println("0 - To exit the program");
   }
 
@@ -114,9 +120,10 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To add a client");
       System.out.println("2 - To find a client by id");
-      System.out.println("3 - To add product to client shopping cart");
-      System.out.println("4 - To display client shopping cart");
-      System.out.println("5 - To place order");
+      System.out.println("3 - To display all clients");
+      System.out.println("4 - To add product to client shopping cart");
+      System.out.println("5 - To display client shopping cart");
+      System.out.println("6 - To place order");
 
       //get user choice
       int choice = promptMenuSelection();
@@ -164,7 +171,7 @@ public class Tester {
             System.out.println("The client found is " + client.toString());
           }
           break;
-        case 4:
+        case 3:
           System.out.println(" DISPLAY CLIENTS");
           System.out.println();
           warehouse.displayClients();
@@ -408,5 +415,45 @@ public class Tester {
       String res = scanner.next();
       if (res.equals("y")) keepWorking = true; else keepWorking = false;
     } while (keepWorking);
+  }
+
+  /**
+   * populate with static data
+   */
+  private static void populateTestData() {
+    //populate suppliers
+    List<String> sups = new LinkedList<String>();
+    sups.add("Jacob");
+    sups.add("James");
+    sups.add("Bill");
+    sups.add("Mamadou");
+    sups.add("Tom");
+    for (int i = 0; i < sups.size(); i++) {
+      warehouse.addSupplier(sups.get(i), i + " Main Street", "320223589" + i);
+    }
+
+    //populate clients
+    List<String> clnts = new LinkedList<String>();
+    clnts.add("Jane");
+    clnts.add("Diana");
+    clnts.add("Claire");
+    clnts.add("Elias");
+
+    for (int i = 0; i < clnts.size(); i++) {
+      warehouse.addClient(clnts.get(i), i + " Big Avenue", "652223589" + i);
+    }
+
+    //populate products
+    List<String> prods = new LinkedList<String>();
+    prods.add("Ice Cream");
+    prods.add("Apple Juice");
+    prods.add("Yogurt XL");
+    prods.add("Chips Doritos");
+    prods.add("Pure Water");
+    prods.add("Elias");
+
+    for (int i = 0; i < prods.size(); i++) {
+      warehouse.addProduct(prods.get(i), (i * 2 + 6.5), "SP" + i, i * 2);
+    }
   }
 }
