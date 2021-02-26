@@ -132,8 +132,10 @@ public class Warehouse implements Serializable {
     if (client.getShopCart().isEmpty()) {
       return false;
     }
-
     //process order here
+
+    //clear shopping cart
+    client.clearShoppingCart();
     return true;
   }
 

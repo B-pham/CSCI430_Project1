@@ -251,8 +251,6 @@ public class Tester {
 
             if (received) {
               System.out.println("Order received");
-              //clear client shopping cart
-              selectedClient.clearShoppingCart();
               System.out.println();
               System.out.println();
             } else {
