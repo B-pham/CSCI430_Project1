@@ -171,6 +171,98 @@ public class Tester {
           System.out.println();
           warehouse.displayClients();
           break;
+        case 4:
+          System.out.println(" ADD PRODUCT TO CLIENT CART");
+          System.out.println();
+
+          //display list of clients
+          warehouse.displayClients();
+          System.out.println();
+
+          //select a client
+          System.out.println(" Select a client by Id");
+
+          //prompt for selection
+          String selectedId = scanner.next();
+
+          //find client
+          Client selectedClient = warehouse.findClient(selectedId);
+
+          if (selectedClient == null) {
+            System.out.println("No client found");
+            continue;
+          }
+
+          System.out.println("You selected:");
+          System.out.println(selectedClient.toString());
+          System.out.println();
+
+          boolean keepAdding = true;
+
+          do {
+            //display products for selection
+            warehouse.displayProducts();
+            System.out.println();
+
+            //select a product
+            System.out.println(" Select a product by Id");
+            String selectedProd = scanner.next();
+
+            //find product
+            Product selectedProduct = warehouse.findProduct(selectedProd);
+
+            if (selectedProduct == null) {
+              System.out.println("No product found");
+              continue;
+            }
+
+            System.out.println(
+              "Adding... " + selectedProduct.getName() + " to cart"
+            );
+
+            selectedClient.addToCart(selectedProduct);
+
+            System.out.println(
+              "Updated total amount: " + selectedClient.getTotal()
+            );
+
+            System.out.print("Add more product?");
+            System.out.println();
+            System.out.print("Enter y for yes. Anything else for no: ");
+            String res = scanner.next();
+            if (res.equals("y")) keepAdding = true; else keepAdding = false;
+          } while (keepAdding);
+
+          //display shopping cart content
+          System.out.println();
+          System.out.println("Shopping cart content");
+          selectedClient.displayCartContent();
+          System.out.println();
+
+          //display cart summary
+          System.out.print("The order total is: ");
+          System.out.println("$" + selectedClient.getTotal());
+          System.out.println();
+
+          System.out.println("Would you like to place the order?");
+          String placeOrder = scanner.next();
+          if (placeOrder.equals("y")) {
+            boolean received = warehouse.receiveOrder(selectedClient);
+
+            if (received) {
+              System.out.println("Order received");
+              //clear client shopping cart
+              selectedClient.clearShoppingCart();
+              System.out.println();
+              System.out.println();
+            } else {
+              System.out.println("We were unable to receive your order");
+              System.out.println();
+              break;
+            }
+          }
+
+          break;
         default:
           System.out.println("That is not a valid input.");
           continue;

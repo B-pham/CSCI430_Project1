@@ -13,6 +13,8 @@ public class Client implements Serializable {
   private List<Product> shopCart = new LinkedList<Product>();
   private List<Order> orders = new LinkedList<Order>();
 
+  //private Map<Product, Double> shoppingCart = new HashMap<Product, Double>();
+
   public Client(String name, String address, String Phone) {
     this.name = name;
     this.address = address;
@@ -20,8 +22,46 @@ public class Client implements Serializable {
     this.id = ClientString + (MemberIdServer.instance()).getId();
   }
 
+  /**
+   * get the total amount of the shopping cart
+   * @return
+   */
+  public double getTotal() {
+    double total = .0;
+
+    for (Product prod : shopCart) {
+      total += prod.getPrice();
+    }
+
+    return total;
+  }
+
   public List<Product> getShopCart() {
     return this.shopCart;
+  }
+
+  /**
+   * display shopping cart centent
+   */
+  public void displayCartContent() {
+    for (Product prod : shopCart) {
+      System.out.println(prod.toString());
+    }
+  }
+
+  /**
+   * clear shopping cart
+   */
+  public void clearShoppingCart() {
+    System.out.print("Clearing shopping cart...");
+    shopCart.clear();
+  }
+
+  /**
+   * add product to the shopping cart
+   */
+  public boolean addToCart(Product product) {
+    return shopCart.add(product);
   }
 
   public String getName() {

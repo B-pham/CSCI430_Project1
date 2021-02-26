@@ -124,6 +124,20 @@ public class Warehouse implements Serializable {
   }
 
   /**
+   * receive client order
+   * @param client
+   * @return
+   */
+  public boolean receiveOrder(Client client) {
+    if (client.getShopCart().isEmpty()) {
+      return false;
+    }
+
+    //process order here
+    return true;
+  }
+
+  /**
    * get number of client in the list
    */
   public int getClientsCount() {
