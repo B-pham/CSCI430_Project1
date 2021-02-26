@@ -113,8 +113,6 @@ public class Tester {
       System.out.println("2 - To find a client by id");
       System.out.println("3 - To display all clients");
       System.out.println("4 - To add product to client shopping cart");
-      System.out.println("5 - To display client shopping cart");
-      System.out.println("6 - To place order");
       System.out.println("0 - To go back");
 
       //get user choice
