@@ -113,7 +113,7 @@ public class Tester {
    */
   private static void handleClientManagement() {
     boolean keepWorking = false;
-    do { // show menu
+    loop:do { // show menu
       System.out.println();
       System.out.println("CLIENT MANAGEMENT MENU");
       System.out.println();
@@ -124,11 +124,15 @@ public class Tester {
       System.out.println("4 - To add product to client shopping cart");
       System.out.println("5 - To display client shopping cart");
       System.out.println("6 - To place order");
+      System.out.println("0 - To go back");
 
       //get user choice
       int choice = promptMenuSelection();
 
       switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
         case 1:
           System.out.println(" ADD CLIENT");
 
@@ -197,7 +201,7 @@ public class Tester {
    */
   private static void handleSupplierManagement() {
     boolean keepWorking = false;
-    do {
+    loop:do {
       // show menu
       System.out.println();
       System.out.println("SUPPLIER MANAGEMENT MENU");
@@ -206,10 +210,15 @@ public class Tester {
       System.out.println("1 - To add a supplier");
       System.out.println("2 - To find a supplier by id");
       System.out.println("3 - To display suppliers");
+      System.out.println("0 - To go back");
+
       //get user choice
       int choice = promptMenuSelection();
 
       switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
         case 1:
           System.out.println(" ADD SUPPLIER");
           System.out.println();
@@ -279,7 +288,7 @@ public class Tester {
    */
   private static void handleProductManagement() {
     boolean keepWorking = false;
-    do {
+    loop:do {
       // show menu
       System.out.println();
       System.out.println("PRODUCT MANAGEMENT MENU");
@@ -289,10 +298,14 @@ public class Tester {
       System.out.println("2 - To find a product by id");
       System.out.println("3 - To display products");
       System.out.println("4 - To display products by supplier");
+      System.out.println("0 - To go back");
 
       int choice = promptMenuSelection();
 
       switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
         case 1:
           System.out.println(" ADD PRODUCT");
           System.out.println();
@@ -376,7 +389,7 @@ public class Tester {
    */
   private static void handleTransactionManagement() {
     boolean keepWorking = false;
-    do {
+    loop:do {
       // show menu
       System.out.println();
       System.out.println("TRANSACTION MANAGEMENT MENU");
@@ -384,10 +397,14 @@ public class Tester {
       System.out.println("SELECT:");
       System.out.println("1 - To display all transactions");
       System.out.println("2 - To display transactions by client");
+      System.out.println("0 - To go back");
 
       int choice = promptMenuSelection();
 
       switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
         case 1:
           System.out.println(" DISPLAY ALL PRODUCTS");
           System.out.println();
