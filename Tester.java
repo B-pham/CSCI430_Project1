@@ -250,7 +250,6 @@ public class Tester {
             boolean received = warehouse.receiveOrder(selectedClient);
 
             if (received) {
-              System.out.println("Order received");
               System.out.println();
               System.out.println();
             } else {

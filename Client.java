@@ -9,9 +9,11 @@ public class Client implements Serializable {
   private String address;
   private String phone;
   private String id;
+  private double balance = .0;
 
   private List<Product> shopCart = new LinkedList<Product>();
   private List<Order> orders = new LinkedList<Order>();
+  private List<Invoice> invoices = new LinkedList<Invoice>();
 
   //private Map<Product, Double> shoppingCart = new HashMap<Product, Double>();
 
@@ -20,6 +22,7 @@ public class Client implements Serializable {
     this.address = address;
     this.phone = Phone;
     this.id = ClientString + (MemberIdServer.instance()).getId();
+    this.balance = 1000.0;
   }
 
   /**
@@ -41,6 +44,36 @@ public class Client implements Serializable {
   }
 
   /**
+   * reduce balance after purchase
+   */
+  public boolean reduceBalance(double amount) {
+    System.out.println("Reducing client balance  by: $" + amount);
+    balance -= amount;
+    System.out.println("The balance is now: $" + balance);
+    return true;
+  }
+
+  /**
+   * add order to list of orders
+   * @param order
+   * @return
+   */
+  public boolean addOrder(Order order) {
+    return orders.add(order);
+  }
+
+  /**
+   * add invoice
+   * @param invoice
+   * @return
+   */
+  public boolean addInvoice(Invoice invoice) {
+    System.out.println(name + " received invoice " + invoice.getId());
+    System.out.println("The total of that invoice is $" + invoice.getTotal());
+    return invoices.add(invoice);
+  }
+
+  /**
    * display shopping cart centent
    */
   public void displayCartContent() {
@@ -53,7 +86,7 @@ public class Client implements Serializable {
    * clear shopping cart
    */
   public void clearShoppingCart() {
-    System.out.print("Clearing shopping cart...");
+    System.out.println("Clearing shopping cart...");
     shopCart.clear();
   }
 

@@ -1,4 +1,6 @@
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Warehouse implements Serializable {
@@ -9,6 +11,7 @@ public class Warehouse implements Serializable {
   private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
   private static List<Transaction> transactions = new LinkedList<Transaction>();
+  private static List<Order> orders = new LinkedList<Order>();
 
   private Warehouse() {}
 
@@ -132,10 +135,49 @@ public class Warehouse implements Serializable {
     if (client.getShopCart().isEmpty()) {
       return false;
     }
-    //process order here
+
+    //PROCESS ORDER HERE
+    LocalDateTime date = LocalDateTime.now();
+    DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern(
+      "E, MMM dd yyyy HH:mm:ss"
+    );
+    String formattedDate = date.format(dateFormat);
+
+    //create order and send a copy to client
+    Order order = new Order(client);
+    client.addOrder(order); //client copy
+    orders.add(order); //warehouse copy
+    System.out.println("Order " + order.getId() + " received");
+
+    //create transaction and send to client
+    Transaction transaction = new Transaction(
+      client.getId(),
+      formattedDate,
+      client.getTotal()
+    );
+    transactions.add(transaction); //warehouse copy
+    System.out.println("Transaction " + transaction.getId() + " added");
+
+    //create invoice and send to client
+    Invoice invoice = new Invoice(
+      client.getId(),
+      formattedDate,
+      client.getShopCart(),
+      client.getTotal()
+    );
+    System.out.println("Invoice " + invoice.getId() + " generated");
+    client.addInvoice(invoice); //client copy
+    System.out.println();
+
+    //process payment
+    //reduce client balance
+    client.reduceBalance(client.getTotal());
+    System.out.println();
 
     //clear shopping cart
     client.clearShoppingCart();
+
+    //prepare shipment
     return true;
   }
 

@@ -11,6 +11,13 @@ public class Transaction implements Serializable {
   String date;
   double amount;
 
+  public Transaction(String clientId, String date, double amount) {
+    this.id = "TR" + MemberIdServer.instance().getId();
+    this.amount = amount;
+    this.date = date;
+    this.clientId = clientId;
+  }
+
   public String getId() {
     return id;
   }
