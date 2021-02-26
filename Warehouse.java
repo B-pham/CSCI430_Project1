@@ -174,6 +174,8 @@ public class Warehouse implements Serializable {
     client.reduceBalance(client.getTotal());
     System.out.println();
 
+    System.out.println("The shipment is now been prepared...");
+
     //clear shopping cart
     client.clearShoppingCart();
 
