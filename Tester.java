@@ -11,7 +11,7 @@ public class Tester {
   private static Warehouse warehouse = Warehouse.instance();
 
   public static void main(String[] args) {
-    boolean keepWorking = false;
+    boolean keepWorking = true;
     do {
       showTesterHeader();
       System.out.println();
@@ -24,7 +24,7 @@ public class Tester {
       switch (choice) {
         case 0:
           System.out.println(": Exiting program...");
-          System.exit(0);
+          keepWorking = false;
           break;
         case 1:
           System.out.println(": Manage Clients");
@@ -50,15 +50,6 @@ public class Tester {
           System.out.println("Please make a valid choice");
           continue;
       }
-
-      //update user choice
-      System.out.print("Would you like to perform ");
-      System.out.println("another operation?");
-      System.out.println();
-      System.out.print("Enter y for yes. Anything else for no:");
-
-      String res = scanner.next();
-      if (res.equals("y")) keepWorking = true; else keepWorking = false;
     } while (keepWorking);
 
     if (scanner != null) {
