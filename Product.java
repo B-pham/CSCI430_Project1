@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.*;
 
 public class Product implements Serializable {
 
@@ -12,6 +13,8 @@ public class Product implements Serializable {
   private int quantity;
   private String id;
   private String supplierID;
+
+  private Queue<String> waitingList = new LinkedList<String>();
 
   public Product(String name, double price, String supID, int quantity) {
     this.name = name;
@@ -29,7 +32,7 @@ public class Product implements Serializable {
     return supplierID;
   }
 
-  public double getQuantity() {
+  public int getQuantity() {
     return quantity;
   }
 
@@ -40,6 +43,27 @@ public class Product implements Serializable {
   public String getId() {
     return id;
   }
+
+  public void setQuantity(int amount){
+    quantity += amount;
+  }
+
+  public void addToList(String toBeAdded){
+     waitingList.add(toBeAdded);
+  }
+
+  public void getAllInList() {
+    Iterator<String> waitlist = waitingList.iterator();
+
+    System.out.println();
+    while(waitlist.hasNext()){
+      String idOnWait = waitingList.peek();
+      String idOnNextWait = waitlist.next();
+      if(idOnWait != idOnNextWait){
+        System.out.println(idOnWait + " ");
+      }
+    } 
+  } 
 
   @Override
   public String toString() {
