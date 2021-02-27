@@ -54,15 +54,11 @@ public class Product implements Serializable {
 
   public void getAllInList() {
     Iterator<String> waitlist = waitingList.iterator();
-
     System.out.println();
-    while(waitlist.hasNext()){
-      String idOnWait = waitingList.peek();
-      String idOnNextWait = waitlist.next();
-      if(idOnWait != idOnNextWait){
-        System.out.println(idOnWait + " ");
-      }
-    } 
+     while(waitlist.hasNext()){
+        System.out.println(waitlist.next() + " ");
+      } 
+
   } 
 
   @Override

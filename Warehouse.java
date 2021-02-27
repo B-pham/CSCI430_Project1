@@ -177,18 +177,18 @@ public class Warehouse implements Serializable {
       String temp = waitlistOrders.get(i).getId();
       Product updateQuantity = productList.findProduct(temp);//finds the product in the list and points to it
       if(updateQuantity.getQuantity() == 0){
-        String waitlist = client.getId();
+        String waitlist = invoice.getClientId();
         updateQuantity.addToList(waitlist);// checks if it has stock, if not then it gets added to the waitlist
         System.out.println("There is none left in stock, you will be put on the waiting list.");
-        updateQuantity.getAllInList();
+        
         runningTotal += updateQuantity.getPrice();
       }
       else{
         updateQuantity.setQuantity(-1);// else continues to remove stock
       }
-
+      updateQuantity.getAllInList();
     }
-
+    
 
 
 
