@@ -293,4 +293,11 @@ public class Warehouse implements Serializable {
   public void getAllProdId() {
     productList.getAllProducts();
   }
+
+  public Double addToBalance(Double amount, Client client)
+  {
+      client.setBalance(client.getBalance() + amount);
+
+      return client.getBalance();
+  }
 }

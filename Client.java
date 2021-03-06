@@ -129,6 +129,16 @@ public class Client implements Serializable {
     this.id = id;
   }
 
+  public void setBalance(Double toBeAdded)
+  {
+    this.balance = toBeAdded;
+  }
+
+  public Double getBalance()
+  {
+    return balance;
+  }
+
   @Override
   public String toString() {
     return (
