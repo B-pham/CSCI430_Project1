@@ -38,7 +38,14 @@ public class Client implements Serializable {
 
     return total;
   }
-
+  
+  /**
+  *add payment to client account
+  */
+  public void addPayment(double amount){
+    balance += amount;
+  }
+  
   public List<Product> getShopCart() {
     return this.shopCart;
   }
@@ -100,7 +107,11 @@ public class Client implements Serializable {
   public String getName() {
     return name;
   }
-
+  
+  public double getBalance(){
+    return balance;
+  }
+  
   public String getAddress() {
     return address;
   }
