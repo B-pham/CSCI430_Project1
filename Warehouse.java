@@ -13,7 +13,7 @@ public class Warehouse implements Serializable {
   private static Warehouse warehouse;
   private static List<Transaction> transactions = new LinkedList<Transaction>();
   private static List<Order> orders = new LinkedList<Order>();
-
+  private List<Product> waitlistOrders;
   private Warehouse() {}
 
   public static Warehouse instance() {
@@ -171,7 +171,7 @@ public class Warehouse implements Serializable {
     System.out.println();
 
     //Waitlisting
-    List<Product> waitlistOrders = order.getProducts();
+    waitlistOrders = order.getProducts();
     double runningTotal = 0.0;
 
     for(int i = 0; i< waitlistOrders.size(); i++){
@@ -188,9 +188,11 @@ public class Warehouse implements Serializable {
         updateQuantity.setQuantity(-1);// else continues to remove stock
       }
       updateQuantity.getAllInList();
+      
+      
     }
     
-
+    
 
 
     //process payment
@@ -301,35 +303,20 @@ public class Warehouse implements Serializable {
 
       return client.getBalance();
   }
-  public void acceptOrder(){
-    Scanner sc = new Scanner(System.in);
-    String productId;
-    int quantity;
-    
-    
-    while(!orders.isEmpty()){
-      System.out.println("Enter product ID : ");
-      productID = sc.next();
-      System.out.println("Enter quantity of product: ");
-      quantity = sc.nextInt();
-      
-}
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  public void acceptOrder(){
+    Scanner sc = new Scanner(in);
+    String prodID;
+    char answer;
+    int size = waitlistOrders.size();//when item is removed in loop waitlistOrder size decreases
+    
+    System.out.println("These items are on a waitlist, do you wish to fill them? Type 'Y' or 'N'");
+    for(int i = 0; i < size; i++){
+      System.out.println("Item ")+i;
+      waitlistOrders.get(i);
+      System.out.println("Do you wish to fill waitlist order?");
+      answer = sc.next();
+      
+      if(answer == 'Y')
+        waitlist.remove(i);
+    }
