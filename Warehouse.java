@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.Scanner;
 
 public class Warehouse implements Serializable {
 
@@ -300,4 +301,35 @@ public class Warehouse implements Serializable {
 
       return client.getBalance();
   }
+  public void acceptOrder(){
+    Scanner sc = new Scanner(System.in);
+    String productId;
+    int quantity;
+    
+    
+    while(!orders.isEmpty()){
+      System.out.println("Enter product ID : ");
+      productID = sc.next();
+      System.out.println("Enter quantity of product: ");
+      quantity = sc.nextInt();
+      
 }
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
