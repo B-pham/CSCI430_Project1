@@ -50,6 +50,30 @@ public class Warehouse implements Serializable {
   }
 
   /**
+   * get number of client in the list
+   */
+  public int getClientsCount() {
+    return clientList.getClientsCount();
+  }
+
+  public Client findClient(String clientId) {
+    return clientList.findClient(clientId);
+  }
+
+  public boolean checkClients(String clientID){
+    if(getClientsCount() == 0){
+      System.out.println("There are no clients in the list.");
+      return false;
+    }
+    else
+      return true;
+  }
+
+  public void showClient(Client client){
+    System.out.println(client.toString());
+  }
+
+  /**
    * display all products
    */
   public void displayProducts() {
@@ -206,19 +230,6 @@ public class Warehouse implements Serializable {
     return true;
   }
 
-  /**
-   * get number of client in the list
-   */
-  public int getClientsCount() {
-    return clientList.getClientsCount();
-  }
-
-  /**
-   * find a client by id
-   */
-  public Client findClient(String clientId) {
-    return clientList.findClient(clientId);
-  }
 
   /**
    * add supplier to suppliers list
@@ -289,6 +300,8 @@ public class Warehouse implements Serializable {
       if (supplier == null) return false; else return true;
     }
   }
+
+
 
   public void getAllProdId() {
     productList.getAllProducts();
