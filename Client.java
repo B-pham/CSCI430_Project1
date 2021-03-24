@@ -145,11 +145,6 @@ public class Client implements Serializable {
     this.balance = toBeAdded;
   }
 
-  public Double getBalance()
-  {
-    return balance;
-  }
-
   @Override
   public String toString() {
     return (

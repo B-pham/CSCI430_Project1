@@ -1,7 +1,5 @@
 import java.util.*;
 
-
-
 public class NewUI {
     private static Scanner scanner;
     private static Warehouse warehouse = Warehouse.instance();

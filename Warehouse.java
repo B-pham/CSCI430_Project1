@@ -304,8 +304,6 @@ public class Warehouse implements Serializable {
     }
   }
 
-
-
   public void getAllProdId() {
     productList.getAllProducts();
   }
@@ -318,18 +316,25 @@ public class Warehouse implements Serializable {
   }
 
   public void acceptOrder(){
-    Scanner sc = new Scanner(in);
+    Scanner sc = new Scanner(System.in);
     String prodID;
     char answer;
     int size = waitlistOrders.size();//when item is removed in loop waitlistOrder size decreases
     
     System.out.println("These items are on a waitlist, do you wish to fill them? Type 'Y' or 'N'");
     for(int i = 0; i < size; i++){
-      System.out.println("Item ")+i;
+      System.out.println("Item "+i);
       waitlistOrders.get(i);
       System.out.println("Do you wish to fill waitlist order?");
-      answer = sc.next();
+      answer = sc.next().charAt(0);
       
       if(answer == 'Y')
-        waitlist.remove(i);
+        waitlistOrders.remove(i);
     }
+
+    if (sc != null) {
+      sc.close();
+    }
+
+  }
+}
