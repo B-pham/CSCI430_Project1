@@ -113,6 +113,7 @@ public class Tester {
       System.out.println("2 - To find a client by id");
       System.out.println("3 - To display all clients");
       System.out.println("4 - To add product to client shopping cart");
+      System.out.println("5 - Add money to account");
       System.out.println("0 - To go back");
 
       //get user choice
@@ -258,6 +259,32 @@ public class Tester {
           }
 
           break;
+        case 5:
+          System.out.println(" ADD MONEY TO ACCOUNT");
+          System.out.println();
+
+          //display list of clients
+          warehouse.displayClients();
+          System.out.println();
+
+          System.out.print("Please enter client ID: ");
+          String clientID = scanner.next();          
+
+          //find client
+          Client addToBalClient = warehouse.findClient(clientID);
+
+          if (addToBalClient == null) {
+            System.out.println("No client found");
+            continue;
+          }
+
+          System.out.print("Please enter the amount of money you would like to add: ");
+          Double amount = scanner.nextDouble();
+
+          Double currentBalance = warehouse.addToBalance(amount, addToBalClient);
+
+          System.out.println("This is your current balance: " + addToBalClient.getBalance());
+
         default:
           System.out.println("That is not a valid input.");
           continue;
