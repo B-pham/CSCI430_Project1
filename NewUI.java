@@ -771,8 +771,9 @@ AND SHOULD WORK JUST FINE HERE/////
       System.out.println();
       System.out.println("SELECT:");
       System.out.println("1 - To list shipments");
-      System.out.println("2 - To accept a shipment");
-      System.out.println("3 - To add shipment products to inventory");
+      System.out.println("2 - To a show shipment details");
+      System.out.println("3 - To accept a shipment");
+      System.out.println("4 - To add shipment products to inventory");
       System.out.println("0 - To go back");
 
       int choice = promptMenuSelection();
@@ -787,9 +788,14 @@ AND SHOULD WORK JUST FINE HERE/////
 
           break;
         case 2:
+          System.out.println(" SHOW SHIPMENT DETAILS");
+          System.out.println();
+
+          break;
+        case 3:
           System.out.println(" ACCEPT A SHIPMENT");
           System.out.println();
-        case 3:
+        case 4:
           System.out.println(" ADD SHIPMENT PRODUCTS TO INVENTORY");
           System.out.println();
           warehouse.displayProducts();
