@@ -791,15 +791,18 @@ AND SHOULD WORK JUST FINE HERE/////
           System.out.println(" SHOW SHIPMENT DETAILS");
           System.out.println();
           //prompt for shipment id
-          shipmentId = "";
-
+          System.out.print("What is the shipment id: ");
+          scanner.nextLine();
+          shipmentId = scanner.nextLine();
           warehouse.displayShipmentDetails(shipmentId);
           break;
         case 3:
           System.out.println(" ACCEPT A SHIPMENT");
           System.out.println();
           //prompt for shipment id
-          shipmentId = "";
+          System.out.print("What is the shipment id: ");
+          scanner.nextLine();
+          shipmentId = scanner.nextLine();
           warehouse.acceptShipment(shipmentId);
         default:
           System.out.println("That is not a valid input.");

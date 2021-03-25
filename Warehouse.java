@@ -414,9 +414,7 @@ public class Warehouse implements Serializable {
       shipment.setAccepted(true);
       //add products to the inventory
       productList.insertProduct(shipment.products);
-
       System.out.println("Shipment " + shipmentId + " acceted and");
-
       System.out.println("products added to the inventory");
     } else {
       System.out.println("No shipment found");
