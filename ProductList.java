@@ -26,9 +26,15 @@ public class ProductList implements Serializable {
   public boolean insertProduct(Product product) {
     productCount += 1;
     System.out.println(productCount + " product");
-    boolean result = products.add(product);
-    System.out.println(" products " + result);
-    return result;
+
+    Product existing = this.findProduct(product.getId());
+
+    if (existing != null) {
+      existing.setQuantity(existing.getQuantity() + product.getQuantity());
+    } else {
+      products.add(product);
+    }
+    return true;
   }
 
   /**
@@ -37,8 +43,14 @@ public class ProductList implements Serializable {
    * @return
    */
   public boolean insertProduct(List<Product> products) {
-    productCount += 1;
-    System.out.println(productCount + " products");
+    //just change item quantity if product
+    //is already in the inventory otherwise
+    //add the product to the list
+    products.forEach(
+      (Product product) -> {
+        this.insertProduct(product);
+      }
+    );
     return true;
   }
 
