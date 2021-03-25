@@ -26,6 +26,17 @@ public class ProductList implements Serializable {
     return result;
   }
 
+  /**
+   * add multiple products at once
+   * @param products
+   * @return
+   */
+  public boolean insertProduct(List<Product> products) {
+    productCount += 1;
+    System.out.println(productCount + " products");
+    return true;
+  }
+
   public Iterator<Product> getProducts() {
     return products.iterator();
   }
@@ -88,8 +99,8 @@ public class ProductList implements Serializable {
     Iterator<Product> ProductsID = this.getProducts();
 
     System.out.println();
-    while(ProductsID.hasNext()){
+    while (ProductsID.hasNext()) {
       System.out.println(ProductsID.next().getId() + " ");
-    } 
+    }
   }
 }

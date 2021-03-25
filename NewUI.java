@@ -764,6 +764,7 @@ AND SHOULD WORK JUST FINE HERE/////
    */
   private static void handleShipmentManagement() {
     boolean keepWorking = false;
+    String shipmentId = "";
     loop:do {
       // show menu
       System.out.println();
@@ -773,7 +774,6 @@ AND SHOULD WORK JUST FINE HERE/////
       System.out.println("1 - To list shipments");
       System.out.println("2 - To a show shipment details");
       System.out.println("3 - To accept a shipment");
-      System.out.println("4 - To add shipment products to inventory");
       System.out.println("0 - To go back");
 
       int choice = promptMenuSelection();
@@ -785,21 +785,22 @@ AND SHOULD WORK JUST FINE HERE/////
         case 1:
           System.out.println(" LIST ALL SHIPMENTS");
           System.out.println();
-
+          warehouse.displayAllShipments();
           break;
         case 2:
           System.out.println(" SHOW SHIPMENT DETAILS");
           System.out.println();
+          //prompt for shipment id
+          shipmentId = "";
 
+          warehouse.displayShipmentDetails(shipmentId);
           break;
         case 3:
           System.out.println(" ACCEPT A SHIPMENT");
           System.out.println();
-        case 4:
-          System.out.println(" ADD SHIPMENT PRODUCTS TO INVENTORY");
-          System.out.println();
-          warehouse.displayProducts();
-          break;
+          //prompt for shipment id
+          shipmentId = "";
+          warehouse.acceptShipment(shipmentId);
         default:
           System.out.println("That is not a valid input.");
           continue;

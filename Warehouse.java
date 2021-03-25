@@ -8,12 +8,14 @@ public class Warehouse implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private static ClientList clientList = ClientList.instance();
+  private static ShipmentList shipmentList = ShipmentList.instance();
   private static SupplierList supplierList = SupplierList.instance();
   private static ProductList productList = ProductList.instance();
   private static Warehouse warehouse;
   private static List<Transaction> transactions = new LinkedList<Transaction>();
   private static List<Order> orders = new LinkedList<Order>();
   private List<Product> waitlistOrders;
+
   private Warehouse() {}
 
   public static Warehouse instance() {
@@ -61,41 +63,37 @@ public class Warehouse implements Serializable {
     return clientList.findClient(clientId);
   }
 
-  public boolean checkClients(String clientID){
-    if(getClientsCount() == 0){
+  public boolean checkClients(String clientID) {
+    if (getClientsCount() == 0) {
       System.out.println("There are no clients in the list.");
       return false;
-    }
-    else
-      return true;
+    } else return true;
   }
 
-  public void showClient(Client client){
+  public void showClient(Client client) {
     System.out.println(client.toString());
   }
 
-  public void showShoppingCart(Client client){  
+  public void showShoppingCart(Client client) {
     client.displayCartContent();
   }
 
-  public void addtoCart(String productID, Client client){
-    Product toBeAdded; 
-    if(productList.getProductsCount() != 0){
+  public void addtoCart(String productID, Client client) {
+    Product toBeAdded;
+    if (productList.getProductsCount() != 0) {
       toBeAdded = productList.findProduct(productID);
-      if(toBeAdded == null){
+      if (toBeAdded == null) {
         System.out.println("That item does not exist in the list products.");
-      }
-      else{
+      } else {
         client.addToCart(toBeAdded);
         System.out.println("Item has been added to cart!");
-      }      
-    }
-    else{
+      }
+    } else {
       System.out.println("There are no products to add");
     }
   }
 
-  public void removeFromCart(String productID, Client client){
+  public void removeFromCart(String productID, Client client) {
     Product product = productList.findProduct(productID);
     client.removeFromCart(product);
   }
@@ -114,15 +112,17 @@ public class Warehouse implements Serializable {
     }
   }
 
-  public void displayWaitlist(String clientID){
+  public void displayWaitlist(String clientID) {
     Iterator<Product> products = productList.getProducts();
 
-    if(products.hasNext()){
-      while(products.hasNext()){
+    if (products.hasNext()) {
+      while (products.hasNext()) {
         Product checkWaitlist = products.next();
-        
-        if(checkWaitlist.check(clientID)){
-          System.out.println(checkWaitlist.getId() + " " + checkWaitlist.getName());
+
+        if (checkWaitlist.check(clientID)) {
+          System.out.println(
+            checkWaitlist.getId() + " " + checkWaitlist.getName()
+          );
         }
       }
     }
@@ -238,26 +238,22 @@ public class Warehouse implements Serializable {
     waitlistOrders = order.getProducts();
     double runningTotal = 0.0;
 
-    for(int i = 0; i< waitlistOrders.size(); i++){
+    for (int i = 0; i < waitlistOrders.size(); i++) {
       String temp = waitlistOrders.get(i).getId();
-      Product updateQuantity = productList.findProduct(temp);//finds the product in the list and points to it
-      if(updateQuantity.getQuantity() == 0){
+      Product updateQuantity = productList.findProduct(temp); //finds the product in the list and points to it
+      if (updateQuantity.getQuantity() == 0) {
         String waitlist = invoice.getClientId();
-        updateQuantity.addToList(waitlist);// checks if it has stock, if not then it gets added to the waitlist
-        System.out.println("There is none left in stock, you will be put on the waiting list.");
-        
+        updateQuantity.addToList(waitlist); // checks if it has stock, if not then it gets added to the waitlist
+        System.out.println(
+          "There is none left in stock, you will be put on the waiting list."
+        );
+
         runningTotal += updateQuantity.getPrice();
-      }
-      else{
-        updateQuantity.setQuantity(-1);// else continues to remove stock
+      } else {
+        updateQuantity.setQuantity(-1); // else continues to remove stock
       }
       updateQuantity.getAllInList();
-      
-      
     }
-    
-    
-
 
     //process payment
     //reduce client balance
@@ -272,7 +268,6 @@ public class Warehouse implements Serializable {
     //prepare shipment
     return true;
   }
-
 
   /**
    * add supplier to suppliers list
@@ -348,33 +343,83 @@ public class Warehouse implements Serializable {
     productList.getAllProducts();
   }
 
-  public Double addToBalance(Double amount, Client client)
-  {
-      client.setBalance(client.getBalance() + amount);
+  public Double addToBalance(Double amount, Client client) {
+    client.setBalance(client.getBalance() + amount);
 
-      return client.getBalance();
+    return client.getBalance();
   }
 
-  public void acceptOrder(){
+  public void acceptOrder() {
     Scanner sc = new Scanner(System.in);
     String prodID;
     char answer;
-    int size = waitlistOrders.size();//when item is removed in loop waitlistOrder size decreases
-    
-    System.out.println("These items are on a waitlist, do you wish to fill them? Type 'Y' or 'N'");
-    for(int i = 0; i < size; i++){
-      System.out.println("Item "+i);
+    int size = waitlistOrders.size(); //when item is removed in loop waitlistOrder size decreases
+
+    System.out.println(
+      "These items are on a waitlist, do you wish to fill them? Type 'Y' or 'N'"
+    );
+    for (int i = 0; i < size; i++) {
+      System.out.println("Item " + i);
       waitlistOrders.get(i);
       System.out.println("Do you wish to fill waitlist order?");
       answer = sc.next().charAt(0);
-      
-      if(answer == 'Y')
-        waitlistOrders.remove(i);
+
+      if (answer == 'Y') waitlistOrders.remove(i);
     }
 
     if (sc != null) {
       sc.close();
     }
+  }
 
+  /**
+   * display all shipments
+   */
+  public void displayAllShipments() {
+    Iterator<Shipment> shipments = shipmentList.getShipments();
+    if (shipments.hasNext()) {
+      while (shipments.hasNext()) {
+        System.out.println(shipments.next().toString());
+      }
+    } else {
+      System.out.println("There is nothing in your shipment list");
+    }
+  }
+
+  /**
+   * display the details of a particular shipment
+   * @param shipmentId
+   */
+  public void displayShipmentDetails(String shipmentId) {
+    Shipment shipment = shipmentList.findShipment(shipmentId);
+
+    if (shipment != null) {
+      System.out.println(shipment.toString());
+    } else {
+      System.out.println("No shipment found");
+    }
+  }
+
+  /**
+   * accept shipment and add products to inventory
+   * @param shipmentId
+   */
+  public void acceptShipment(String shipmentId) {
+    Shipment shipment = shipmentList.findShipment(shipmentId);
+
+    if (shipment != null && shipment.isAccepted) {
+      System.out.println("Shipment already accepted and processed ");
+    } else if (shipment != null) {
+      //mark the shipment as accepted
+      shipment.setAccepted(true);
+      //add products to the inventory
+      productList.insertProduct(shipment.products);
+
+      System.out.println("Shipment " + shipmentId + " acceted and");
+
+      System.out.println("products added to the inventory");
+    } else {
+      System.out.println("No shipment found");
+    }
   }
 }
