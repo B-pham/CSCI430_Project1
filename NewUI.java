@@ -270,10 +270,10 @@ public class NewUI {
     }
 
 /*
-THE FOLLOWING SEGMENTS OF CODE
-ARE TAKEN FROM OUR OLD
-TESTER.JAVA
-AND SHOULD WORK JUST FINE HERE
+THE FOLLOWING SEGMENTS OF CODE/////
+ARE TAKEN FROM OUR OLD/////////////
+TESTER.JAVA////////////////////////
+AND SHOULD WORK JUST FINE HERE/////
 */
 
   /**
@@ -755,4 +755,4 @@ AND SHOULD WORK JUST FINE HERE
       warehouse.addProduct(prods.get(i), (i * 2 + 6.5), "SP" + i, i * 2);
     }
   }
-}
+} 
