@@ -18,6 +18,11 @@ public class ProductList implements Serializable {
     }
   }
 
+  /**
+   * add single product
+   * @param product
+   * @return
+   */
   public boolean insertProduct(Product product) {
     productCount += 1;
     System.out.println(productCount + " product");
