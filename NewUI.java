@@ -1,275 +1,272 @@
 import java.util.*;
 
 public class NewUI {
-    private static Scanner scanner;
-    private static Warehouse warehouse = Warehouse.instance();
 
-    public static void main(String[] args){
-        boolean keepWorking = true;
-        do{
-            System.out.println("\tWelcome CSCI Warehouse");  
-            showMainMenu();  
+  private static Scanner scanner;
+  private static Warehouse warehouse = Warehouse.instance();
 
-            int choice = promptMenuSelection();
+  public static void main(String[] args) {
+    boolean keepWorking = true;
+    do {
+      System.out.println("\tWelcome CSCI Warehouse");
+      showMainMenu();
 
-            //Selection management
-            switch(choice){
-                case 0:
-                    System.out.println(": Exiting the program...");
-                    keepWorking = false;
-                    break;
-                case 1:
-                    System.out.println();
-                    System.out.print("Please enter your client ID: ");
+      int choice = promptMenuSelection();
 
-                    scanner.nextLine();
-                    String clientID = scanner.nextLine();
-                    if(warehouse.checkClients(clientID) == false){
-                        System.out.println("There are no clients in the list");
-                        break;
-                    }
-                    Client client = warehouse.findClient(clientID);
-                    if(client == null){
-                        System.out.println("That client ID does not exist in the list.");
-                        break;
-                    }
+      //Selection management
+      switch (choice) {
+        case 0:
+          System.out.println(": Exiting the program...");
+          keepWorking = false;
+          break;
+        case 1:
+          System.out.println();
+          System.out.print("Please enter your client ID: ");
 
-                    handleClientMenu(client);
-                    break; 
-                case 2:
-                    handleClerkMenu();
-                    break;
-                case 3:
-                    handleManagerMenu();
-                    break;
-                default:
-                    System.out.println(": Invalid choice");
-                    System.out.println("Please make a valid choice");
-                    continue;                                 
-            }
-        }while(keepWorking);
+          scanner.nextLine();
+          String clientID = scanner.nextLine();
+          if (warehouse.checkClients(clientID) == false) {
+            System.out.println("There are no clients in the list");
+            break;
+          }
+          Client client = warehouse.findClient(clientID);
+          if (client == null) {
+            System.out.println("That client ID does not exist in the list.");
+            break;
+          }
 
-        if(scanner != null){
-            scanner.close();
+          handleClientMenu(client);
+          break;
+        case 2:
+          handleClerkMenu();
+          break;
+        case 3:
+          handleManagerMenu();
+          break;
+        default:
+          System.out.println(": Invalid choice");
+          System.out.println("Please make a valid choice");
+          continue;
+      }
+    } while (keepWorking);
+
+    if (scanner != null) {
+      scanner.close();
+    }
+  }
+
+  //The opening state
+  private static void showMainMenu() {
+    System.out.println("\t\tMAIN MENU");
+    System.out.println();
+    System.out.println("1 - Client menu");
+    System.out.println("2 - Clerk menu");
+    System.out.println("3 - Manager menu");
+    System.out.println("0 - Exit program");
+  }
+
+  //Menu selection prompts @return selected menu
+  private static int promptMenuSelection() {
+    scanner = new Scanner(System.in);
+    System.out.print("::=>: ");
+
+    int choice = scanner.nextInt();
+    return choice;
+  }
+
+  private static void handleClientMenu(Client client) {
+    scanner = new Scanner(System.in);
+    boolean Continue = true;
+    boolean keepWorking = true;
+
+    loop:do {
+      clientMenuPrompt();
+      int choice = promptMenuSelection();
+      switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
+        case 1:
+          System.out.println("Client details:");
+          warehouse.showClient(client);
+          break;
+        case 2:
+          warehouse.displayProducts();
+          break;
+        case 3:
+          warehouse.displayTransactionsByClient(client.getId());
+          break;
+        case 4:
+          do {
+            Continue = shoppingCart(client);
+          } while (Continue);
+          break;
+        case 5:
+          System.out.println("Your current waitlisted items: ");
+          warehouse.displayWaitlist(client.getId());
+          break;
+        default:
+          System.out.println("That is not a valid input.");
+          continue;
+      }
+    } while (keepWorking);
+  }
+
+  public static void clientMenuPrompt() {
+    System.out.println();
+    System.out.println("\tCLIENT MENU");
+    System.out.println();
+    System.out.println("SELECT:");
+    System.out.println("1 - Show details");
+    System.out.println("2 - List products available");
+    System.out.println("3 - List previous transactions");
+    System.out.println("4 - Modify shopping cart");
+    System.out.println("5 - Display current waitlist");
+    System.out.println("0 - Logout");
+  }
+
+  public static boolean shoppingCart(Client client) {
+    boolean keepGoing = true;
+    String productID;
+
+    System.out.println();
+    System.out.println("Shopping cart: ");
+    warehouse.showClient(client);
+    System.out.println();
+
+    System.out.println("1 - Add to cart");
+    System.out.println("2 - Remove from cart");
+    int choice = scanner.nextInt();
+
+    switch (choice) {
+      case 1:
+        System.out.print(
+          "Please enter the product ID of the item that you would like to add: "
+        );
+        scanner.nextLine();
+        productID = scanner.nextLine();
+        warehouse.addtoCart(productID, client);
+        break;
+      case 2:
+        if (client.getShopCart().isEmpty()) System.out.println(
+          "There is nothing to remove."
+        ); else {
+          System.out.print(
+            "Please enter the product ID of the item that you would like to remove: "
+          );
+          scanner.nextLine();
+          productID = scanner.nextLine();
+          warehouse.removeFromCart(productID, client);
         }
+        break;
+      default:
+        System.out.println("Invalid choice");
+        break;
     }
-
-    //The opening state
-    private static void showMainMenu(){
-        System.out.println("\t\tMAIN MENU");
-        System.out.println();
-        System.out.println("1 - Client menu");
-        System.out.println("2 - Clerk menu");
-        System.out.println("3 - Manager menu");  
-        System.out.println("0 - Exit program");   
-    }
-
-    //Menu selection prompts @return selected menu
-    private static int promptMenuSelection() {
-        scanner = new Scanner(System.in);
-        System.out.print("::=>: ");
-    
-        int choice = scanner.nextInt();
-        return choice;
-    }
-      
-    private static void handleClientMenu(Client client){
-        scanner = new Scanner(System.in);
-        boolean Continue = true;
-        boolean keepWorking = true;
-
-        loop:do{
-            clientMenuPrompt();
-            int choice = promptMenuSelection();        
-            switch(choice){
-                case 0:
-                    System.out.println("Back to the main menu");
-                    break loop;
-                case 1:
-                    System.out.println("Client details:");
-                    warehouse.showClient(client);
-                    break;
-                case 2:
-                    warehouse.displayProducts();
-                    break;
-                case 3:
-                    warehouse.displayTransactionsByClient(client.getId());
-                    break;
-                case 4:
-                    do{
-                        Continue = shoppingCart(client);                        
-                    }while(Continue);
-                    break;
-                case 5:
-                    System.out.println("Your current waitlisted items: ");
-                    warehouse.displayWaitlist(client.getId());
-                    break;
-                default:
-                    System.out.println("That is not a valid input.");
-                    continue;
-            }   
-         
-        }while(keepWorking);
-
-    }
-
-    public static void clientMenuPrompt(){
-        System.out.println();
-        System.out.println("\tCLIENT MENU");
-        System.out.println();
-        System.out.println("SELECT:");
-        System.out.println("1 - Show details");
-        System.out.println("2 - List products available");
-        System.out.println("3 - List previous transactions");
-        System.out.println("4 - Modify shopping cart");
-        System.out.println("5 - Display current waitlist");
-        System.out.println("0 - Logout");        
-    }
-
-    public static boolean shoppingCart(Client client){
-        boolean keepGoing = true;
-        String productID;
-
-        System.out.println();
-        System.out.println("Shopping cart: ");
-        warehouse.showClient(client);
-        System.out.println(); 
-        
-        System.out.println("1 - Add to cart");
-        System.out.println("2 - Remove from cart");
-        int choice = scanner.nextInt();
-
-        switch(choice){
-            case 1:
-                System.out.print("Please enter the product ID of the item that you would like to add: ");
-                scanner.nextLine();
-                productID = scanner.nextLine();
-                warehouse.addtoCart(productID, client);
-                break;
-            case 2:
-                if(client.getShopCart().isEmpty())
-                    System.out.println("There is nothing to remove.");
-                else{
-                    System.out.print("Please enter the product ID of the item that you would like to remove: ");
-                    scanner.nextLine();
-                    productID = scanner.nextLine();
-                    warehouse.removeFromCart(productID, client);
-                }
-                break;
-            default:
-                System.out.println("Invalid choice");
-                break;
-
-
-        }
-        do{
-            System.out.println("Would you like to continue editing your cart? Y/N: ");
-            char edit = scanner.nextLine().charAt(0);
-            if (edit == 'y' || edit == 'Y')
-            {
-                return true;
-            }
-            else if(edit == 'n' ||edit == 'N'){
-                return false;
-            }
-            else{
-                System.out.println("Invalid choice please try again.");
-                System.out.println();
-            }     
-        }while(keepGoing);
-
+    do {
+      System.out.println("Would you like to continue editing your cart? Y/N: ");
+      char edit = scanner.nextLine().charAt(0);
+      if (edit == 'y' || edit == 'Y') {
         return true;
-    }
-
-    private static void handleClerkMenu(){
-        scanner = new Scanner(System.in);
-        boolean Continue = true;
-        boolean keepWorking = true;
-
-        loop:do{
-            clerkMenuPrompt();
-            int choice = promptMenuSelection();        
-            switch(choice){
-                case 0:
-                    System.out.println("Back to the main menu");
-                    break loop;
-                case 1:
-                    System.out.println(": Manage Clients");
-                    handleClientManagement();
-                    break;
-                case 2:
-                    System.out.println(": Manage Products");
-                    handleProductManagement();
-                    break;
-                case 3:
-                    //Process Shipment
-                    break;
-                case 9:
-                    //handleClientMenu(client);
-                    break;
-                default:
-                    System.out.println("That is not a valid input.");
-                    continue;
-            }   
-         
-        }while(keepWorking);
-    }
-
-    private static void handleManagerMenu(){
-        scanner = new Scanner(System.in);
-        boolean Continue = true;
-        boolean keepWorking = true;
-
-        loop:do{
-            managerMenuPrompt();
-            int choice = promptMenuSelection();        
-            switch(choice){
-                case 0:
-                    System.out.println("Back to the main menu");
-                    break loop;
-                case 1:
-                    System.out.println(": Manage Suppliers");
-                    handleSupplierManagement();
-                    break;
-                case 2:
-                    System.out.println(": Manage Products");
-                    handleProductManagement();
-                    break;
-                case 9:
-                    handleClerkMenu();
-                    break;
-                default:
-                    System.out.println("That is not a valid input.");
-                    continue;
-            }   
-         
-        }while(keepWorking);
-    }   
-
-    public static void clerkMenuPrompt(){
+      } else if (edit == 'n' || edit == 'N') {
+        return false;
+      } else {
+        System.out.println("Invalid choice please try again.");
         System.out.println();
-        System.out.println("\tCLERK MENU");
-        System.out.println();
-        System.out.println("SELECT:");
-        System.out.println("1 - Manage clients");
-        System.out.println("2 - Manage products");
-        System.out.println("3 - Process Shipment");
-        System.out.println("9 - View client menu");
-        System.out.println("0 - Logout");        
-    }
+      }
+    } while (keepGoing);
 
-    public static void managerMenuPrompt(){
-        System.out.println();
-        System.out.println("\tMANAGER MENU");
-        System.out.println();
-        System.out.println("SELECT:");
-        System.out.println("1 - Manage suppliers");
-        System.out.println("2 - Manage products");
-        System.out.println("9 - View clerk menu");
-        System.out.println("0 - Logout");   
-    }
+    return true;
+  }
 
-/*
+  private static void handleClerkMenu() {
+    scanner = new Scanner(System.in);
+    boolean Continue = true;
+    boolean keepWorking = true;
+
+    loop:do {
+      clerkMenuPrompt();
+      int choice = promptMenuSelection();
+      switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
+        case 1:
+          System.out.println(": Manage Clients");
+          handleClientManagement();
+          break;
+        case 2:
+          System.out.println(": Manage Products");
+          handleProductManagement();
+          break;
+        case 3:
+          //Process Shipment
+          System.out.println(": Manage Shipments");
+          break;
+        case 9:
+          //handleClientMenu(client);
+          break;
+        default:
+          System.out.println("That is not a valid input.");
+          continue;
+      }
+    } while (keepWorking);
+  }
+
+  private static void handleManagerMenu() {
+    scanner = new Scanner(System.in);
+    boolean Continue = true;
+    boolean keepWorking = true;
+
+    loop:do {
+      managerMenuPrompt();
+      int choice = promptMenuSelection();
+      switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
+        case 1:
+          System.out.println(": Manage Suppliers");
+          handleSupplierManagement();
+          break;
+        case 2:
+          System.out.println(": Manage Products");
+          handleProductManagement();
+          break;
+        case 9:
+          handleClerkMenu();
+          break;
+        default:
+          System.out.println("That is not a valid input.");
+          continue;
+      }
+    } while (keepWorking);
+  }
+
+  public static void clerkMenuPrompt() {
+    System.out.println();
+    System.out.println("\tCLERK MENU");
+    System.out.println();
+    System.out.println("SELECT:");
+    System.out.println("1 - Manage clients");
+    System.out.println("2 - Manage products");
+    System.out.println("3 - Process Shipment");
+    System.out.println("9 - View client menu");
+    System.out.println("0 - Logout");
+  }
+
+  public static void managerMenuPrompt() {
+    System.out.println();
+    System.out.println("\tMANAGER MENU");
+    System.out.println();
+    System.out.println("SELECT:");
+    System.out.println("1 - Manage suppliers");
+    System.out.println("2 - Manage products");
+    System.out.println("9 - View clerk menu");
+    System.out.println("0 - Logout");
+  }
+
+  /*
 THE FOLLOWING SEGMENTS OF CODE/////
 ARE TAKEN FROM OUR OLD/////////////
 TESTER.JAVA////////////////////////
@@ -445,7 +442,7 @@ AND SHOULD WORK JUST FINE HERE/////
           System.out.println();
 
           System.out.print("Please enter client ID: ");
-          String clientID = scanner.next();          
+          String clientID = scanner.next();
 
           //find client
           Client addToBalClient = warehouse.findClient(clientID);
@@ -455,13 +452,19 @@ AND SHOULD WORK JUST FINE HERE/////
             continue;
           }
 
-          System.out.print("Please enter the amount of money you would like to add: ");
+          System.out.print(
+            "Please enter the amount of money you would like to add: "
+          );
           Double amount = scanner.nextDouble();
 
-          Double currentBalance = warehouse.addToBalance(amount, addToBalClient);
+          Double currentBalance = warehouse.addToBalance(
+            amount,
+            addToBalClient
+          );
 
-          System.out.println("This is your current balance: " + addToBalClient.getBalance());
-
+          System.out.println(
+            "This is your current balance: " + addToBalClient.getBalance()
+          );
         default:
           System.out.println("That is not a valid input.");
           continue;
@@ -478,7 +481,7 @@ AND SHOULD WORK JUST FINE HERE/////
     } while (keepWorking);
   }
 
-    /**
+  /**
    * handle supplier management process
    */
   private static void handleSupplierManagement() {
@@ -565,7 +568,7 @@ AND SHOULD WORK JUST FINE HERE/////
     } while (keepWorking);
   }
 
-    /**
+  /**
    * handle product management process
    */
   private static void handleProductManagement() {
@@ -666,7 +669,7 @@ AND SHOULD WORK JUST FINE HERE/////
     } while (keepWorking);
   }
 
-    /**
+  /**
    * handle transaction management
    */
   private static void handleTransactionManagement() {
@@ -755,4 +758,55 @@ AND SHOULD WORK JUST FINE HERE/////
       warehouse.addProduct(prods.get(i), (i * 2 + 6.5), "SP" + i, i * 2);
     }
   }
-} 
+
+  /**
+   * handle shipment management in clerk menu
+   */
+  private static void handleShipmentManagement() {
+    boolean keepWorking = false;
+    loop:do {
+      // show menu
+      System.out.println();
+      System.out.println("MANAGEMENT MANAGEMENT MENU");
+      System.out.println();
+      System.out.println("SELECT:");
+      System.out.println("1 - To list shipments");
+      System.out.println("2 - To accept a shipment");
+      System.out.println("3 - To add shipment products to inventory");
+      System.out.println("0 - To go back");
+
+      int choice = promptMenuSelection();
+
+      switch (choice) {
+        case 0:
+          System.out.println("Back to the main menu");
+          break loop;
+        case 1:
+          System.out.println(" LIST ALL SHIPMENTS");
+          System.out.println();
+
+          break;
+        case 2:
+          System.out.println(" ACCEPT A SHIPMENT");
+          System.out.println();
+        case 3:
+          System.out.println(" ADD SHIPMENT PRODUCTS TO INVENTORY");
+          System.out.println();
+          warehouse.displayProducts();
+          break;
+        default:
+          System.out.println("That is not a valid input.");
+          continue;
+      }
+
+      //update user choice
+      System.out.print("Would you like to continue ");
+      System.out.println("with the product management?");
+      System.out.println();
+      System.out.print("Enter y for yes. Anything else for no: ");
+
+      String res = scanner.next();
+      if (res.equals("y")) keepWorking = true; else keepWorking = false;
+    } while (keepWorking);
+  }
+}
