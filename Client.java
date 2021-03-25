@@ -84,9 +84,15 @@ public class Client implements Serializable {
    * display shopping cart centent
    */
   public void displayCartContent() {
-    for (Product prod : shopCart) {
-      System.out.println(prod.toString());
+    if(this.shopCart.isEmpty()){
+      System.out.println("There is nothing in the cart. ");
     }
+    else{
+      for (Product prod : shopCart) {
+      System.out.println(prod.toString());
+    }    
+    }
+
   }
 
   /**
@@ -102,6 +108,10 @@ public class Client implements Serializable {
    */
   public boolean addToCart(Product product) {
     return shopCart.add(product);
+  }
+
+  public void removeFromCart(Product product){
+    shopCart.remove(product);
   }
 
   public String getName() {

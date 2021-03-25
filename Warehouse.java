@@ -74,6 +74,32 @@ public class Warehouse implements Serializable {
     System.out.println(client.toString());
   }
 
+  public void showShoppingCart(Client client){  
+    client.displayCartContent();
+  }
+
+  public void addtoCart(String productID, Client client){
+    Product toBeAdded; 
+    if(productList.getProductsCount() != 0){
+      toBeAdded = productList.findProduct(productID);
+      if(toBeAdded == null){
+        System.out.println("That item does not exist in the list products.");
+      }
+      else{
+        client.addToCart(toBeAdded);
+        System.out.println("Item has been added to cart!");
+      }      
+    }
+    else{
+      System.out.println("There are no products to add");
+    }
+  }
+
+  public void removeFromCart(String productID, Client client){
+    Product product = productList.findProduct(productID);
+    client.removeFromCart(product);
+  }
+
   /**
    * display all products
    */
@@ -85,6 +111,20 @@ public class Warehouse implements Serializable {
       }
     } else {
       System.out.println("There is nothing in your product list");
+    }
+  }
+
+  public void displayWaitlist(String clientID){
+    Iterator<Product> products = productList.getProducts();
+
+    if(products.hasNext()){
+      while(products.hasNext()){
+        Product checkWaitlist = products.next();
+        
+        if(checkWaitlist.check(clientID)){
+          System.out.println(checkWaitlist.getId() + " " + checkWaitlist.getName());
+        }
+      }
     }
   }
 

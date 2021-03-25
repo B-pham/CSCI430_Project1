@@ -61,6 +61,14 @@ public class Product implements Serializable {
 
   } 
 
+  //Checks to see if the clientID is on the waitlist
+  public boolean check(String clientID){
+    if(waitingList.contains(clientID)){
+      return true;
+    }
+    else return false;
+  }
+
   @Override
   public String toString() {
     return (
