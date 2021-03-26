@@ -26,7 +26,8 @@ public class NewUI {
                     break;
                 case 1:
                     System.out.println();
-                    System.out.print("Please enter your client ID: ");
+                    System.out.println("Please enter your client ID: ");
+                    System.out.println("For test purposes - Use ID 123: ");
 
                     scanner.nextLine();
                     String clientID = scanner.nextLine();
@@ -157,7 +158,8 @@ public class NewUI {
     
               break;
             case 9:
-              System.out.print("Please enter your client ID: ");
+              System.out.println("Please enter your client ID: ");
+              System.out.println("For test purposes - Use ID 123: ");
               scanner.nextLine();
               String clientID = scanner.nextLine();
               if(warehouse.checkClients(clientID) == false){
