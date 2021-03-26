@@ -5,6 +5,12 @@ public class NewUI {
     private static Warehouse warehouse = Warehouse.instance();
 
     public static void main(String[] args){
+      Client testClient = new Client("John", "123 Ave N", "123-342-3321");
+      testClient.setId("123");
+
+      ClientList clientList = ClientList.instance();
+      clientList.insertClient(testClient);
+
         boolean keepWorking = true;
         do{
             System.out.println("\tWelcome CSCI Warehouse");  
