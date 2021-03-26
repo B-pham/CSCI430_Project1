@@ -84,28 +84,27 @@ public class NewUI {
           switch (choice) {
             case 0:
               System.out.println("Back to the main menu");
+
               break loop;
             case 1:
               System.out.println("Client details:");
-              //warehouse.showClient(client);
+
               break;
             case 2:
-            System.out.println("Available products: ");
-              //warehouse.displayProducts();
+              System.out.println("Available products: ");
+
               break;
             case 3:
             System.out.println("Your previous transactions: ");
-              //warehouse.displayTransactionsByClient(client.getId());
+
               break;
             case 4:
             System.out.println("Your current shopping cart: ");
-              //do {
-                //Continue = shoppingCart(client);
-              //} while (Continue);
+
               break;
             case 5:
               System.out.println("Your current waitlisted items: ");
-              //warehouse.displayWaitlist(client.getId());
+
               break;
             default:
               System.out.println("That is not a valid input.");
@@ -125,10 +124,11 @@ public class NewUI {
           switch (choice) {
             case 0:
               System.out.println("Back to the main menu");
+
               break loop;
             case 1:
               System.out.println("Add Client: ");
-              //handleClientManagement();
+
               break;
             case 2:
               System.out.println("List Products: ");
@@ -151,7 +151,7 @@ public class NewUI {
     
               break;
             case 9:
-              //handleClientMenu(client);
+              handleClientMenu(client);
               break;
             default:
               System.out.println("That is not a valid input.");
@@ -171,14 +171,15 @@ public class NewUI {
           switch (choice) {
             case 0:
               System.out.println("Back to the main menu");
+
               break loop;
             case 1:
               System.out.println("Add product: ");
-              //handleSupplierManagement();
+
               break;
             case 2:
               System.out.println("Add supplier: ");
-              //handleProductManagement();
+
               break;
             case 3:
               System.out.println("List suppliers: ");
@@ -249,59 +250,6 @@ public class NewUI {
       System.out.println("0 - Logout");
     }
 
-    public static boolean shoppingCart(Client client){
-      boolean keepGoing = true;
-      String productID;
 
-      System.out.println();
-      System.out.println("Shopping cart: ");
-      warehouse.showClient(client);
-      System.out.println(); 
-      
-      System.out.println("1 - Add to cart");
-      System.out.println("2 - Remove from cart");
-      int choice = scanner.nextInt();
-
-      switch(choice){
-          case 1:
-              System.out.print("Please enter the product ID of the item that you would like to add: ");
-              scanner.nextLine();
-              productID = scanner.nextLine();
-              warehouse.addtoCart(productID, client);
-              break;
-          case 2:
-              if(client.getShopCart().isEmpty())
-                  System.out.println("There is nothing to remove.");
-              else{
-                  System.out.print("Please enter the product ID of the item that you would like to remove: ");
-                  scanner.nextLine();
-                  productID = scanner.nextLine();
-                  warehouse.removeFromCart(productID, client);
-              }
-              break;
-          default:
-              System.out.println("Invalid choice");
-              break;
-
-
-      }
-      do{
-          System.out.println("Would you like to continue editing your cart? Y/N: ");
-          char edit = scanner.nextLine().charAt(0);
-          if (edit == 'y' || edit == 'Y')
-          {
-              return true;
-          }
-          else if(edit == 'n' ||edit == 'N'){
-              return false;
-          }
-          else{
-              System.out.println("Invalid choice please try again.");
-              System.out.println();
-          }     
-      }while(keepGoing);
-
-      return true;
-  }
 
 }
