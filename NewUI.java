@@ -3,8 +3,11 @@ import java.util.*;
 public class NewUI {
     private static Scanner scanner;
     private static Warehouse warehouse = Warehouse.instance();
-
+    
     public static void main(String[] args){
+        Client testClient(John, 123 Ave N, 123-342-3321);
+        testClient.setID(123);
+        
         boolean keepWorking = true;
         do{
             System.out.println("\tWelcome CSCI Warehouse");  
