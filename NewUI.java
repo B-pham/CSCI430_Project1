@@ -151,8 +151,21 @@ public class NewUI {
     
               break;
             case 9:
+              System.out.print("Please enter your client ID: ");
+              scanner.nextLine();
+              String clientID = scanner.nextLine();
+              if(warehouse.checkClients(clientID) == false){
+                System.out.println("There are no clients in the list");
+                break;
+              }
+              Client client = warehouse.findClient(clientID);
+              if(client == null){
+                  System.out.println("That client ID does not exist in the list.");
+                  break;
+              }
+
               handleClientMenu(client);
-              break;
+              break; 
             default:
               System.out.println("That is not a valid input.");
               continue;
@@ -249,7 +262,5 @@ public class NewUI {
       System.out.println("9 - View clerk menu");
       System.out.println("0 - Logout");
     }
-
-
 
 }
